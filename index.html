@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Romania CDSS</title>
+    <meta
+      name="description"
+      content=""
+    />
+    <meta name="theme-color" content="#70A9A1" />
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+  </head>
+  <body>
+    <main>
+      <section class="sidebar">
+        <h1 class="title">Crisis Decision Support System for Decision Making</h1>
+        <h2 id="country-name">Romania</h2>
+        <p class="info">
+          The Romania Crisis Situation Map is a comprehensive and dynamic representation of the country's vulnerability to various natural disasters, including earthquakes, floods, wildfires, and cyclones.
+          <br><br>
+          In times of crisis, the map becomes an invaluable tool for decision-makers to assess the severity of the situation, coordinate relief efforts, and prioritize evacuation routes. 
+        </p>
+        <button onclick="testColorChange()">Test Color Change</button>
+
+        </footer>
+      </section>
+      <section class="content">
+        <div class="map-wrapper">
+          <div id="toolTip"></div>
+          <object id="map" data="maps/RO.svg" type="image/svg+xml"></object>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>
