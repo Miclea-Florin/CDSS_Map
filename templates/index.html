@@ -9,7 +9,7 @@
       content=""
     />
     <meta name="theme-color" content="#70A9A1" />
-    <link rel="stylesheet" href="styles.css" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css" />
   </head>
   <body>
     <main>
@@ -28,12 +28,13 @@
       <section class="content">
         <div class="map-wrapper">
           <div id="toolTip"></div>
-          <object id="map" data="maps/RO.svg" type="image/svg+xml"></object>
+          <object id="map" data="{{ url_for('static', filename='maps/RO.svg') }}" type="image/svg+xml"></object>
+
         </div>
       </section>
     </main>
 
-    <script src="script.js"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
   </body>
 </html>

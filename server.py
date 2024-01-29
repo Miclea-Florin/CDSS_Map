@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,render_template
 import os
 from xml.etree import ElementTree as ET
 from tempfile import mkstemp
@@ -30,6 +30,10 @@ def remove_namespace_prefix(element):
     if '}' in element.tag:
         element.tag = element.tag.split('}', 1)[1]
 
+
+@app.route('/')
+def index():
+    return render_template('/index.html')
 
 @app.route('/change-color', methods=['POST'])
 def change_color_endpoint():
