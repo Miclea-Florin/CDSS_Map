@@ -1,4 +1,47 @@
-
+var regionList = [
+    {"id": "RO-AB", "name": "Alba"},
+    {"id": "RO-AR", "name": "Arad"},
+    {"id": "RO-AG", "name": "Argeș"},
+    {"id": "RO-BC", "name": "Bacău"},
+    {"id": "RO-BH", "name": "Bihor"},
+    {"id": "RO-BN", "name": "Bistrița-Năsăud"},
+    {"id": "RO-BT", "name": "Botoșani"},
+    {"id": "RO-BV", "name": "Brașov"},
+    {"id": "RO-BR", "name": "Brăila"},
+    {"id": "RO-BZ", "name": "Buzău"},
+    {"id": "RO-CS", "name": "Caraș-Severin"},
+    {"id": "RO-CL", "name": "Călărași"},
+    {"id": "RO-CJ", "name": "Cluj"},
+    {"id": "RO-CT", "name": "Constanța"},
+    {"id": "RO-CV", "name": "Covasna"},
+    {"id": "RO-DB", "name": "Dâmbovița"},
+    {"id": "RO-DJ", "name": "Dolj"},
+    {"id": "RO-GL", "name": "Galați"},
+    {"id": "RO-GR", "name": "Giurgiu"},
+    {"id": "RO-GJ", "name": "Gorj"},
+    {"id": "RO-HR", "name": "Harghita"},
+    {"id": "RO-HD", "name": "Hunedoara"},
+    {"id": "RO-IL", "name": "Ialomița"},
+    {"id": "RO-IS", "name": "Iași"},
+    {"id": "RO-IF", "name": "Ilfov"},
+    {"id": "RO-MM", "name": "Maramureș"},
+    {"id": "RO-MH", "name": "Mehedinți"},
+    {"id": "RO-MS", "name": "Mureș"},
+    {"id": "RO-NT", "name": "Neamț"},
+    {"id": "RO-OT", "name": "Olt"},
+    {"id": "RO-PH", "name": "Prahova"},
+    {"id": "RO-SM", "name": "Satu Mare"},
+    {"id": "RO-SJ", "name": "Sălaj"},
+    {"id": "RO-SB", "name": "Sibiu"},
+    {"id": "RO-SV", "name": "Suceava"},
+    {"id": "RO-TR", "name": "Teleorman"},
+    {"id": "RO-TM", "name": "Timiș"},
+    {"id": "RO-TL", "name": "Tulcea"},
+    {"id": "RO-VS", "name": "Vaslui"},
+    {"id": "RO-VL", "name": "Vâlcea"},
+    {"id": "RO-VN", "name": "Vrancea"},
+    {"id": "RO-B", "name": "Bucharest (Municipality)"}
+];
 
 function loadMap() {
   var map = document.getElementById("map").contentDocument.querySelector("svg");
@@ -53,19 +96,58 @@ function loadMap() {
 
 // Calls init function on window load
 window.onload = function () {
+  var changeSelector = document.getElementById("regionChange");
+  
+
+    const select = document.getElementById('regionChange');
+
+    
+    regionList.forEach(item => {
+      console.log("aici");
+      const option = document.createElement('option');
+      option.value = item.id;
+      option.textContent = item.name;
+      select.appendChild(option);  // Append the option to the select element
+    });
+  
+ 
   loadMap();
 };
 
 
-function changeColorByIso(elementId, isoCode, color) {
-  var map = document.getElementById(elementId).contentDocument.querySelector("svg");
-  var paths = map.querySelectorAll("path");
-
-  paths.forEach(function (path) {
-    var pathIsoCode = path.getAttribute("iso_3166_2");
-
-    if (pathIsoCode === isoCode) {
-      path.setAttribute("fill", color);
-    }
+function updateMapColor(iso) {
+  $.ajax({
+      url: '/change-color',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({ 'iso': iso }),
+      success: function(response) {
+          // Update the SVG content on the page
+          $('#mapContainer').html(response.svgContent);
+      },
+      error: function(error) {
+          console.log('Error:', error);
+      }
   });
+        }
+
+ function changeColorByIso(elementId, isoCode, color) {
+var map = document.getElementById(elementId).contentDocument.querySelector("svg");
+var paths = map.querySelectorAll("path");
+
+paths.forEach(function (path) {
+  var pathIsoCode = path.getAttribute("iso_3166_2");
+
+  if (pathIsoCode === isoCode) {
+    path.setAttribute("fill", color);
+  }
+});
+
+ }
+
+ function testButton(iso){
+  console.log(iso)
+  updateMapColor(iso);
+  changeColorByIso('map',iso,"#FF0000");
+  
 }

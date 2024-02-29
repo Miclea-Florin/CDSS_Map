@@ -22,7 +22,7 @@ def add_fill_attribute(xml_tree,iso):
         #print(elem.attrib)
         remove_namespace_prefix(elem)
 
-    xml_tree.write('maps\\RO.svg', method='xml', xml_declaration=True)
+    xml_tree.write('static\\maps\\RO.svg', method='xml', xml_declaration=True)
 
 
 def remove_namespace_prefix(element):
@@ -37,11 +37,14 @@ def index():
 
 @app.route('/change-color', methods=['POST'])
 def change_color_endpoint():
-    tree = ET.parse('maps\\RO.svg')
+    tree = ET.parse('static\\maps\\RO.svg')  # Adjust the path as needed
     data = request.get_json()
     iso = data['iso']
     add_fill_attribute(tree, iso)
-    return 'Color changed successfully'  
+    tree.write('static\\maps\\updated_RO.svg')  # Save the updated SVG
+    with open('static\\maps\\updated_RO.svg', 'r') as file:  # Read the updated SVG content
+        svg_content = file.read()
+    return jsonify({'svgContent': svg_content})  # Return the SVG content as JSON
 
 if __name__ == '__main__':
     app.run(debug=True)   
