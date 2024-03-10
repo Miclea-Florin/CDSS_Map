@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css" />
   </head>
   <body>
-    <main>
+    <main>  
       <section class="sidebar">
         <h1 class="title">Crisis Decision Support System for Decision Making</h1>
         <h2 id="country-name">Romania</h2>
@@ -32,8 +32,12 @@
           In times of crisis, the map becomes an invaluable tool for decision-makers to assess the severity of the situation, coordinate relief efforts, and prioritize evacuation routes. 
         </p>
         <button onclick="testButton(document.getElementById('regionChange').value)">Change Color</button>
-        <select id="regionChange" onchange="changeRegion()"></select>
-        </footer>
+        <select id="regionChange" onchange="document.getElementById('hiddenRegionChange').value = this.value"></select>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <input type="file" name="file" />
+          <input type="hidden" name="hiddenRegionChange" id="hiddenRegionChange" />
+          <input type="submit" value="Upload File" />
+      </form>
       </section>
       <section class="content">
         <div class="map-wrapper">

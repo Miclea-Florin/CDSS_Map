@@ -5,8 +5,42 @@ from tempfile import mkstemp
 from shutil import move
 from os import fdopen, remove
 import http
+import image
+from werkzeug.utils import secure_filename
 app = Flask(__name__)
 #CORS(app)
+
+UPLOAD_FOLDER = 'uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+
+@app.route('/upload', methods=['POST', 'GET'])
+def upload_file():
+    # Check if the post request has the file part
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    file = request.files['file']
+    # If the user does not select a file, the browser submits an
+    # empty file without a filename.
+    if file.filename == '':
+        print('No selected file')
+        return render_template('/index.html')
+        #return jsonify({'error': 'No selected file'}), 400
+    if file:
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
+        # You can now process the file as needed
+        #return jsonify({'message': 'File uploaded successfully', 'filename': filename}), 200
+    print("image uploaded successfully")
+   # print(request.form['hiddenRegionChange'])
+    print('Disaster in region: ' + request.form['hiddenRegionChange'])
+    image.predict(file_path)
+
+    return render_template('/index.html')
+
+
 
 def add_fill_attribute(xml_tree,iso):
     
@@ -44,6 +78,8 @@ def change_color_endpoint():
     tree.write('static\\maps\\updated_RO.svg')  # Save the updated SVG
     with open('static\\maps\\updated_RO.svg', 'r') as file:  # Read the updated SVG content
         svg_content = file.read()
+
+
     return jsonify({'svgContent': svg_content})  # Return the SVG content as JSON
 
 if __name__ == '__main__':

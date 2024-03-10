@@ -110,7 +110,7 @@ window.onload = function () {
       select.appendChild(option);  // Append the option to the select element
     });
   
- 
+  
   loadMap();
 };
 
