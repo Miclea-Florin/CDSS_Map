@@ -83,6 +83,10 @@ def predict(image_path):
         "This image most likely belongs to {} with a {:.2f} percent confidence."
         .format(class_names[np.argmax(score)], 100 * np.max(score))
     )
+    #print('[DEBUG]')
+    #print(class_names[np.argmax(score)])
+    return str(class_names[np.argmax(score)])
+    
 
 def model2():
     model = tf.keras.models.load_model('model_PLS')

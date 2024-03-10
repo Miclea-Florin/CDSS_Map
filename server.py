@@ -36,9 +36,48 @@ def upload_file():
     print("image uploaded successfully")
    # print(request.form['hiddenRegionChange'])
     print('Disaster in region: ' + request.form['hiddenRegionChange'])
-    image.predict(file_path)
+    
+    
+    dis = image.predict(file_path)
+    
+    #TO DELETE IF DOESN"T WORK
+    tree = ET.parse('static\\maps\\RO.svg')
+    iso = request.form['hiddenRegionChange']
+    add_fill_attribute(tree, iso)
+    tree.write('static\\maps\\updated_RO.svg')  # Save the updated SVG
+    with open('static\\maps\\updated_RO.svg', 'r') as file:  # Read the updated SVG content
+        svg_content = file.read()
+
+    #print('[DEBUG]: '+str(type(dis)) + str(dis))
+    
+    tree = ET.parse('static\\maps\\RO.svg')
+    print('[DEBUG]: Disaster: {}, Region: {}'.format(dis, iso))
+    add_disaster_attribute(tree, iso, dis)
+    tree.write('static\\maps\\updated_RO.svg')  # Save the updated SVG
+    with open('static\\maps\\updated_RO.svg', 'r') as file:  # Read the updated SVG content
+        svg_content = file.read()
+
+
+
+
 
     return render_template('/index.html')
+
+
+def add_disaster_attribute(xml_tree,iso,dis):
+    
+    namespace = {'svg': 'http://www.w3.org/2000/svg'}
+    for path_element in xml_tree.findall(f'.//{{http://www.w3.org/2000/svg}}path[@iso_3166_2="{iso}"]', namespace):
+        path_element.set('disaster', dis)
+
+    root = xml_tree.getroot()
+    root.set('xmlns', 'http://www.w3.org/2000/svg')
+   
+    for elem in root.iter():
+        #print(elem.attrib)
+        remove_namespace_prefix(elem)
+
+    xml_tree.write('static\\maps\\RO.svg', method='xml', xml_declaration=True)
 
 
 
@@ -71,8 +110,10 @@ def index():
 
 @app.route('/change-color', methods=['POST'])
 def change_color_endpoint():
+    print("INFO: Reached change-color endpoint")
     tree = ET.parse('static\\maps\\RO.svg')  # Adjust the path as needed
     data = request.get_json()
+    print(data.keys())
     iso = data['iso']
     add_fill_attribute(tree, iso)
     tree.write('static\\maps\\updated_RO.svg')  # Save the updated SVG

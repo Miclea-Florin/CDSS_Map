@@ -71,6 +71,7 @@ function loadMap() {
             <li><b>${details.gn_name.value}</b></li>
             <li>Population: ${details.population.value}</li>
             <li>Prescurtare: ${details.postal.value}</li>
+            <li>Dezastru: ${details.disaster.value}</li>
             <li class="details-text">Click for details</li>
         </ul>`;
     }
@@ -122,10 +123,12 @@ function updateMapColor(iso) {
       contentType: 'application/json',
       data: JSON.stringify({ 'iso': iso }),
       success: function(response) {
+          console.log('Success:', response);
           // Update the SVG content on the page
           $('#mapContainer').html(response.svgContent);
       },
       error: function(error) {
+          console.log('Am ajuns aici');
           console.log('Error:', error);
       }
   });
@@ -134,7 +137,7 @@ function updateMapColor(iso) {
  function changeColorByIso(elementId, isoCode, color) {
 var map = document.getElementById(elementId).contentDocument.querySelector("svg");
 var paths = map.querySelectorAll("path");
-
+console.log("reached color change function in js");
 paths.forEach(function (path) {
   var pathIsoCode = path.getAttribute("iso_3166_2");
 
@@ -145,9 +148,17 @@ paths.forEach(function (path) {
 
  }
 
- function testButton(iso){
+ function sleep(milliseconds) {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
+ async function testButton(iso){
+  await sleep(3000);
+  console.log(iso)
+  console.log("Upload Button Clicked!")
   console.log(iso)
   updateMapColor(iso);
+
   changeColorByIso('map',iso,"#FF0000");
   
 }
