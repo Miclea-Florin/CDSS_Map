@@ -124,5 +124,5 @@ def change_color_endpoint():
     return jsonify({'svgContent': svg_content})  # Return the SVG content as JSON
 
 if __name__ == '__main__':
-    app.run(debug=True)   
+    app.run(host='0.0.0.0', port=5000, debug=True)
 
