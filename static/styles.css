@@ -518,3 +518,67 @@ div#toolTip ul {
 div#toolTip ul li {
   margin-bottom: 3px;
 }
+
+
+
+/* Chat container initially hidden */
+#chat-container {
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
+  width: 300px;
+  height: 0;
+  overflow: hidden;
+  background: #f4f7f6;
+  border-radius: 5px;
+  transition: height 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Visible state of the chat container */
+#chat-container.visible {
+  height: 300px;
+}
+
+#chat-window {
+  width: 100%;
+  height: calc(100% - 50px);
+  padding: 10px;
+  background: #fff;
+  overflow-y: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+#output {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+#user-input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  font-size: 14px;
+}
+
+#user-input:focus {
+  outline: none;
+}
+
+
+/* Chat button styles */
+#chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: #007bff;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}

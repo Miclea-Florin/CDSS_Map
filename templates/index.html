@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css" />
   </head>
   <body>
-    <main>  
+   
+    <main>
+      
       <section class="sidebar">
         <h1 class="title">Crisis Decision Support System for Decision Making</h1>
         <h2 id="country-name">Romania</h2>
@@ -47,7 +49,24 @@
 
         </div>
       </section>
+      
     </main>
+
+    <!--Chat-bot-->
+    <script type="text/javascript">
+      (function(d, t) {
+          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          v.onload = function() {
+            window.voiceflow.chat.load({
+              verify: { projectID: '66006d209b33d8af3dc80877' },
+              url: 'https://general-runtime.voiceflow.com',
+              versionID: 'production'
+            });
+          }
+          v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+    <!--Chat-bot end-->
 
     <script>
       if ('serviceWorker' in navigator) {

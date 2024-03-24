@@ -162,3 +162,4 @@ paths.forEach(function (path) {
   changeColorByIso('map',iso,"#FF0000");
   
 }
+
