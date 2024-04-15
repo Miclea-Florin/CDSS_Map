@@ -171,8 +171,7 @@ def chat():
     print("Error: Missing thread_id")  # Debugging line
     return jsonify({"error": "Missing thread_id"}), 400
 
-  print(f"Received message: {user_input} for thread ID: {thread_id}"
-        )  # Debugging line
+  print(f"Received message: {user_input} for thread ID: {thread_id}")  # Debugging line
 
   # Add the user's message to the thread
   client.beta.threads.messages.create(thread_id=thread_id,

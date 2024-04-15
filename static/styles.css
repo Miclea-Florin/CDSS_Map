@@ -565,20 +565,3 @@ div#toolTip ul li {
   outline: none;
 }
 
-
-/* Chat button styles */
-#chat-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background: #007bff;
-  border-radius: 50%;
-  color: #fff;
-  text-align: center;
-  line-height: 50px;
-  font-size: 30px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
