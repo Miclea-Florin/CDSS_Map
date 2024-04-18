@@ -158,8 +158,12 @@ function playBeep() {
 
         function speak() {
     const msg = new SpeechSynthesisUtterance();
+    msg.lang = 'ro-RO';
     msg.text = "Începeți masajul cardiac și păstrați ritmul pe toată durata sunetelor.";
     msg.lang = 'ro-RO';
+    voices = window.speechSynthesis.getVoices();
+   // console.log  (voices);
+   // msg.voice = voices[1];
 
     // Asynchronously speak the first message
     window.speechSynthesis.speak(msg);
@@ -170,6 +174,7 @@ function playBeep() {
 
         // Set a timeout for 30 seconds then speak the second message
         setTimeout(function() {
+          //msg2.lang = 'ro-RO';
             const msg2 = new SpeechSynthesisUtterance("Începeți respirația gură la gură.");
             msg2.lang = 'ro-RO';
 
@@ -221,19 +226,6 @@ function playBeep() {
 
     <!--End Chat-bot-->
 
-    <script type="text/javascript">
-      (function(d, t) {
-          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-          v.onload = function() {
-            window.voiceflow.chat.load({
-              verify: { projectID: '66006d209b33d8af3dc80877' },
-              url: 'https://general-runtime.voiceflow.com',
-              versionID: 'production'
-            });
-          }
-          v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-      })(document, 'script');
-    </script>
 
   </body>
 </html>

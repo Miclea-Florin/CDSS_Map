@@ -1,6 +1,7 @@
 {
   "short_name": "CDSS",
   "name": "CDSS Romania",
+  "lang": "ro",
   "icons": [
     {
       "src": "romania512.png",
