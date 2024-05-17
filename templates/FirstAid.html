@@ -9,11 +9,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../static/style_firstaid.css" type="text/css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <style>
 body,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 h1{font-family: "Poppins",sans-serif;}
 .w3-bar,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee,.fa-medkit {font-size:200px}
+
+#toggle {
+  display: none;
+}
 
 .grid-container {
   display: grid;
@@ -32,9 +37,71 @@ h1{font-family: "Poppins",sans-serif;}
 @media (min-width: 768px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
+
   }
+
+  .titlu{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  padding-top: 5vw; 
+/*  padding-right: 26vw;*/
+  }
+  .mama{
+
+opacity: 95%;
+text-align: center;
+color: white;
+font-weight: bold;
+font-size: 25px;
+display: flex;
+justify-content: space-around;
+padding-top: 15px;
+align-items: center;
+}
+
+.logo img{
+height: auto;
+width: 100px
+}
+
+.list{
+position: relative;
+}
+
+.stanga, .dreapta{
+display: flex;
+gap: 8vw;
+}
+
+.list:after {
+background: none repeat scroll 0 0 transparent;
+bottom: 0;
+content: "";
+display: block;
+height: 2px;
+left: 50%;
+position: absolute;
+background: #fff;
+transition: width 0.3s ease 0s, left 0.3s ease 0s;
+width: 0;
+}
+.list:hover:after { 
+width: 100%; 
+left: 0; 
+}
+.list a{
+text-decoration: none;
+}
+
+.list:hover{
+  opacity: 80%;
+}
+
 }
 @media (max-width: 767px) {
+  .mama{
+    display: none;
+  }
   .grid-container {
     grid-template-columns: 1fr;
   }
@@ -52,10 +119,24 @@ h1{font-family: "Poppins",sans-serif;}
 .row-wrapper:nth-child(even) {
   background-color: transparent; /* Light grey */
 }
+
+
+/* Navbar container */
+
+
+
+
+
+
+
 }
 .hidden-navbar {
   display: none;
 }
+
+
+
+
 
 
 </style>
@@ -63,25 +144,29 @@ h1{font-family: "Poppins",sans-serif;}
 </head>
 <body>
 
-<!-- Navbar -->
-<div class="w3-top">
-  <div id="navbar" class="w3-bar w3-left-align w3-large" style="background-color: transparent;">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 1</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 2</a>
-  </div>
 
-  <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-  </div>
-</div>
 
 <!-- Header -->
-<header class="w3-container w3-center w3-red" style="padding:128px 16px; background-image: url('../static/FirstAid/landing2.png'); background-size: cover; background-position: center;">
-  <h1 class="w3-margin w3-jumbo">Ridicarea Rautek</h1>
+<header class="w3-container w3-center w3-red" style="padding-bottom: 255px ; background-image: url('../static/FirstAid/landing2.png'); background-size: cover; background-position: center;">
+  <div class="mama">
+    <div class="stanga">
+        <div class="list"><a href="index.html">Menu</a></div>
+        <div class="list"><a href="index.html">Menu</a></div>
+    </div>
+    <div class="logo">
+      <a href="index.html"><img src="../logo1.png" alt="Logo"/></a>
+    </div>
+    <div class="dreapta">
+        <div class="list"><a href="index.html">Menu</a></div>
+        <div class="list"><a href="index.html">Menu</a></div>
+    </div>
+ </div>
+
+// add navbar here
+
+
+  
+  <h1 class="w3-margin w3-jumbo titlu">Ridicarea Rautek</h1>
    
   <div class="video-container">
     <video playsinline controls> 
