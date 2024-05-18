@@ -4,6 +4,7 @@
 <title>Prim ajutor </title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="../static/manifest.json">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,132 +12,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <style>
-body,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-h1{font-family: "Poppins",sans-serif;}
-.w3-bar,button {font-family: "Montserrat", sans-serif}
-.fa-anchor,.fa-coffee,.fa-medkit {font-size:200px}
-
-#toggle {
-  display: none;
-}
-
-.grid-container {
-  display: grid;
-  gap: 100px;
-}
-.grid-item {
-  padding: 16px;
-  text-align: center;
-}
-.row-wrapper:nth-child(odd) {
-  background-color: white;
-}
-.row-wrapper:nth-child(even) {
-  background-color: #f1f1f1; /* Light grey */
-}
-@media (min-width: 768px) {
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr);
-
-  }
-
-  .titlu{
-  font-family: "Montserrat", sans-serif;
-  font-weight: 800;
-  padding-top: 5vw; 
-/*  padding-right: 26vw;*/
-  }
-  .mama{
-
-opacity: 95%;
-text-align: center;
-color: white;
-font-weight: bold;
-font-size: 25px;
-display: flex;
-justify-content: space-around;
-padding-top: 15px;
-align-items: center;
-}
-
-.logo img{
-height: auto;
-width: 100px
-}
-
-.list{
-position: relative;
-}
-
-.stanga, .dreapta{
-display: flex;
-gap: 8vw;
-}
-
-.list:after {
-background: none repeat scroll 0 0 transparent;
-bottom: 0;
-content: "";
-display: block;
-height: 2px;
-left: 50%;
-position: absolute;
-background: #fff;
-transition: width 0.3s ease 0s, left 0.3s ease 0s;
-width: 0;
-}
-.list:hover:after { 
-width: 100%; 
-left: 0; 
-}
-.list a{
-text-decoration: none;
-}
-
-.list:hover{
-  opacity: 80%;
-}
-
-}
-@media (max-width: 767px) {
-  .mama{
-    display: none;
-  }
-  .grid-container {
-    grid-template-columns: 1fr;
-  }
-
- .w3-container { 
-  padding:0px;
-}
-
-  .grid-item:nth-child(odd) {
-  background-color: white;
-}
-.grid-item:nth-child(even) {
-  background-color: #f1f1f1; /* Light grey */
-}
-.row-wrapper:nth-child(even) {
-  background-color: transparent; /* Light grey */
-}
-
-
-/* Navbar container */
-
-
-
-
-
-
-
-}
-.hidden-navbar {
-  display: none;
-}
-
-
-
-
 
 
 </style>
@@ -150,23 +25,21 @@ text-decoration: none;
 <header class="w3-container w3-center w3-red" style="padding-bottom: 255px ; background-image: url('../static/FirstAid/landing2.png'); background-size: cover; background-position: center;">
   <div class="mama">
     <div class="stanga">
-        <div class="list"><a href="index.html">Menu</a></div>
-        <div class="list"><a href="index.html">Menu</a></div>
+        <div class="list"><a href="index.html">Ridicarea Rautek</a></div>
+        <div class="list"><a href="index.html">Manevra Heimlich</a></div>
     </div>
     <div class="logo">
       <a href="index.html"><img src="../logo1.png" alt="Logo"/></a>
     </div>
     <div class="dreapta">
-        <div class="list"><a href="index.html">Menu</a></div>
-        <div class="list"><a href="index.html">Menu</a></div>
+        <div class="list"><a href="index.html">Masaj Cardiac</a></div>
+        <div class="list"><a href="index.html">Poziţia de siguranță</a></div>
     </div>
  </div>
 
-// add navbar here
+ 
 
-
-  
-  <h1 class="w3-margin w3-jumbo titlu">Ridicarea Rautek</h1>
+    <h1 class="w3-margin w3-jumbo titlu" style="font-weight: 800; color:white">Ridicarea Rautek</h1>
    
   <div class="video-container">
     <video playsinline controls> 
@@ -174,7 +47,13 @@ text-decoration: none;
       Your browser does not support the video tag.
     </video>
   </div>
+
+
+
+
 </header>
+
+
 
 <!-- Steps Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container w3-center row-wrapper">
