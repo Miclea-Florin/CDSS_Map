@@ -6,6 +6,10 @@ html {
   box-sizing: inherit;
 }
 
+.text-justify {
+  text-align: justify;
+}
+
 
 
 /* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
@@ -143,6 +147,14 @@ img {
   
 }
 
+@media (min-width:800px) {
+  .iamge-height {
+    
+    height:75%;
+  }
+
+  
+}
 
 body,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 h1{font-family: "Monserrat",sans-serif;}
@@ -169,6 +181,17 @@ h1{font-family: "Monserrat",sans-serif;}
   background-color: #f1f1f1; /* Light grey */
 }
 @media (min-width: 768px) {
+  .imgsafe{
+    max-width: fit-content;
+  }
+
+  .hideOnDesktop {
+    display: none;
+  }
+
+  .Menu {
+    display: none;
+  }
 .navMobile {
   display:none;
   
@@ -213,6 +236,7 @@ display: flex;
 gap: 8vw;
 }
 
+
 .list:after {
 background: none repeat scroll 0 0 transparent;
 bottom: 0;
@@ -241,8 +265,12 @@ text-decoration: none;
 
 }
 @media (max-width: 767px) {
-  .mama{
+ 
+  .hideOnMobile {
     display: none;
+  }
+  .mama{
+   
   }
   .grid-container {
     grid-template-columns: 1fr;
@@ -263,40 +291,106 @@ text-decoration: none;
 }
 
 
-/* Navbar container */
 
-.menu {
-  flex-direction: column;
+nav{
+background-color: transparent;
+box-shadow: 3px 3px 5px (rgba(0,0,0,0.1));
+}
+
+
+nav li {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: center;
-  width: 80%;
-  height: 100vh;
+  height: 50px;
+}
+
+nav a {
+  height: 100%;
+  padding: 0 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+nav a:hover {
+  color: #f1f1f1;
+}
+
+nav li:first-child {
+  margin-right: auto;
+}
+
+.sidebar li:first-child {
+  color: black;
+  right: 0;
+}
+
+.sidebar {
   position: fixed;
   top: 0;
-  right: -100%;
-  z-index: 100;
-  background-color: var(--color2);
-  transition: all 0.2s ease-in-out;
-}
-.menu li {margin-top: 40px;}
-.menu li a {padding: 10px;}
-.open-menu , .close-menu {display: block;}
-#check:checked ~ .menu {right: 0;}
-
-
-
-
-
-}
-.hidden-navbar {
+  right: 0;
+  height: 100vh;
+  width: 250px;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
   display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px; /* Added padding to create space at the top */
 }
 
+.sidebar li {
+  width: 100%;
+  margin-bottom: 20px; /* Added margin to create space between list items */
+}
 
+.sidebar a {
+  width: 100%;
+}
 
+@media (max-width: 800px) {
 
+  .imgsafe{
+    width: 100%;
+  }
+  .sidebar {
+    width: 100%;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+  }
 
+}
 
+  .Menu {
+    padding-left: 85%;
+    padding-top: 30px;
+  }
+
+  .sidebar li:first-child {
+    padding-left: 75%;
+    padding-top:0px;
+    margin-bottom: 30px; /* Increase space between the close button and the first list item */
+  }
+
+  .sidebar li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sidebar a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 
 

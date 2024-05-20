@@ -38,6 +38,13 @@ UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+@app.route('/FirstAid')
+def firstAid():
+    return render_template('/FirstAid.html')
+
+@app.route('/safe_position')
+def safe_position():
+    return render_template('/safe_position.html')
 
 @app.route('/upload', methods=['POST', 'GET'])
 def upload_file():
@@ -134,6 +141,7 @@ def index():
 
 @app.route('/change-color', methods=['POST'])
 def change_color_endpoint():
+    
     print("INFO: Reached change-color endpoint")
     tree = ET.parse('static\\maps\\RO.svg')  # Adjust the path as needed
     data = request.get_json()

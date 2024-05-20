@@ -28,6 +28,7 @@
       
       <section class="sidebar">
         <h1 class="title">Crisis Decision Support System for Decision Making</h1>
+        
         <h2 id="country-name">Romania</h2>
         <p class="info">
           The Romania Crisis Situation Map is a comprehensive and dynamic representation of the country's vulnerability to various natural disasters, including earthquakes, floods, wildfires, and cyclones.
@@ -35,9 +36,10 @@
           In times of crisis, the map becomes an invaluable tool for decision-makers to assess the severity of the situation, coordinate relief efforts, and prioritize evacuation routes. 
         </p>
         
-
+        
         <button onclick="speak()">Speak</button>
-
+        
+        
         <script>
           
           function beep() {
@@ -198,6 +200,8 @@ function playBeep() {
           <input type="hidden" name="hiddenRegionChange" id="hiddenRegionChange" />
           <input type="submit" value="Upload File" onclick="testButton(document.getElementById('regionChange'))" />
       </form>
+
+      <a href="/FirstAid" style="text-align: center; text-decoration: none; color:darkblue"><svg xmlns="http://www.w3.org/2000/svg" height="6vw" viewBox="0 -960 960 960" width="6vw" fill="#FFFFFF"><path d="M280-240h80v-80h80v-80h-80v-80h-80v80h-80v80h80v80Zm240-140h240v-60H520v60Zm0 120h160v-60H520v60ZM160-80q-33 0-56.5-23.5T80-160v-440q0-33 23.5-56.5T160-680h200v-120q0-33 23.5-56.5T440-880h80q33 0 56.5 23.5T600-800v120h200q33 0 56.5 23.5T880-600v440q0 33-23.5 56.5T800-80H160Zm0-80h640v-440H600q0 33-23.5 56.5T520-520h-80q-33 0-56.5-23.5T360-600H160v440Zm280-440h80v-200h-80v200Zm40 220Z"/></svg><br>Manual prim ajutor</a>
       </section>
       <section class="content">
         <div class="map-wrapper">
@@ -205,6 +209,8 @@ function playBeep() {
           <object id="map" data="{{ url_for('static', filename='maps/RO.svg') }}" type="image/svg+xml"></object>
 
         </div>
+
+        
       </section>
       
     </main>
