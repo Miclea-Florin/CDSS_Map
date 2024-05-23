@@ -185,6 +185,12 @@ h1{font-family: "Monserrat",sans-serif;}
     max-width: fit-content;
   }
 
+
+  .heightOnDesktop {
+height: 50%;
+
+  }
+
   .hideOnDesktop {
     display: none;
   }
@@ -265,7 +271,9 @@ text-decoration: none;
 
 }
 @media (max-width: 767px) {
- 
+  .heightOnMobile {
+    height: 35%;
+  }
   .hideOnMobile {
     display: none;
   }

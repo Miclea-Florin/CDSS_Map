@@ -82,11 +82,26 @@
       <h1 onclick="readDivContentById('TextToSpeech1')">Pasul 1</h1>
       <h5 class="w3-padding-32" id="TextToSpeech1">Așază brațele victimei pe lângă corp</h5>
       <img src="../static/FirstAid/rautek1.png" alt="Pasul 1" style="width:100%">
+      <div class="video-container hideOnDesktop">
+        <video playsinline controls muted autoplay loop class="hideOnDesktop" id="Video1"> 
+          <source src="../static/FirstAid/videos/step1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
+    
     <div class="grid-item">
       <h1>Pasul 2</h1>
       <h5 class="w3-padding-32" id="TextToSpeech2">îngenuncheză în spatele capului victimei. Așază o mână sub cap și pe cealaltă între omoplații victimei. Ridică cu atenție capul și umerii victimei si apropie-te mai mult de aceasta.</h5>
       <img src="../static/FirstAid/rautek2.png" alt="Pasul 2" style="width:100%">
+
+      <div class="video-container hideOnDesktop">
+        <video playsinline controls muted autoplay loop class="hideOnDesktop" id="Video2"> 
+          <source src="../static/FirstAid/videos/step2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
     </div>
   </div>
 </div>
@@ -97,11 +112,27 @@
       <h1>Pasul 3</h1>
       <h5 class="w3-padding-32" id="TextToSpeech3">Ridică spatele victimei în poziția șezând. Susține umerii victimei.</h5>
       <img src="../static/FirstAid/rautek3.png" alt="Pasul 3" style="width:100%">
+
+      <div class="video-container hideOnDesktop">
+        <video playsinline controls muted autoplay loop class="hideOnDesktop" id="Video3"> 
+          <source src="../static/FirstAid/videos/step3.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
     </div>
     <div class="grid-item">
       <h1>Pasul 4</h1>
       <h5 class="w3-padding-32" id="TextToSpeech4">Trece-ți mâinile pe sub subsoara victimei și apucă unul dintre antebrațele acesteia. Prinde cu o mână încheietura mâinii victimei și cu cealaltă antebrațul acesteia.</h5>
       <img src="../static/FirstAid/rautek4.png " alt="Pasul 4" style="width:100%">
+
+      <div class="video-container hideOnDesktop">
+        <video playsinline controls muted autoplay loop class="hideOnDesktop" id="Video4"> 
+          <source src="../static/FirstAid/videos/step4.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
     </div>
   </div>
 </div>
@@ -110,13 +141,29 @@
   <div class="w3-content grid-container w3">
     <div class="grid-item">
       <h1>Pasul 5</h1>
-      <h5 class="w3-padding-32" style="padding-bottom: 100px;" id="TextToSpeech5">Stai pe vine, fără a da drumul brațului victimei. Acum victima se află între picioarele tale depărtate. Aprasă bine brațul victimei pe pieptul acesteia.</h5>
-      <img src="../static/FirstAid/rautek5.png" alt="Pasul 5" style="width:100%">
+      <h5 class="w3-padding-32" id="TextToSpeech5">Ridică spatele victimei în poziția șezând. Susține umerii victimei.</h5>
+      <img src="../static/FirstAid/rautek3.png" alt="Pasul 3" style="width:100%">
+
+      <div class="video-container hideOnDesktop">
+        <video playsinline controls muted autoplay loop class="hideOnDesktop" id="Video5"> 
+          <source src="../static/FirstAid/videos/step5.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
     </div>
     <div class="grid-item">
       <h1>Pasul 6</h1>
       <h5 class="w3-padding-32" id="TextToSpeech6">Ridică-te în picioare cu spatele drept și trage victima în sus, astfel încât aceasta să fie sprijinită de tine. Mergi cu spatele, trăgând victima după tine. Fii atent la obstacolele care s-ar putea afla în spatele tău.</h5>
-      <img src="../static/FirstAid/rautek6.png" alt="Pasul 6" style="height:55%">
+      <img src="../static/FirstAid/rautek6.png " alt="Pasul 6" class=" heightOnMobile heightOnDesktop">
+
+      <div class="video-container hideOnDesktop">
+        <video playsinline controls muted autoplay loop class="hideOnDesktop" id="Video6"> 
+          <source src="../static/FirstAid/videos/step6.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
     </div>
   </div>
 </div>
@@ -189,11 +236,12 @@ function startProcess() {
 
 function readCurrentStep() {
     const divId = `TextToSpeech${currentStep}`;
+    const videoId = `Video${currentStep}`;
     const textElement = document.getElementById(divId);
-    const stepElement = document.getElementById(divId);
+    const stepElement = document.getElementById(videoId);
 
     if (textElement && stepElement) {
-        stepElement.scrollIntoView({ behavior: 'smooth' });
+        stepElement.scrollIntoView({ behavior: 'smooth', block: 'end'});
 
         const text = textElement.innerText;
         const msg = new SpeechSynthesisUtterance();
@@ -268,7 +316,8 @@ function startSpeechRecognition() {
 
     recognition.onerror = function(event) {
         console.error('Speech recognition error', event.error);
-        alert('Speech recognition error: ' + event.error);
+        //alert('Speech recognition error: ' + event.error);
+        readCurrentStep();
     };
 
     recognition.start();
