@@ -269,6 +269,8 @@ text-decoration: none;
   opacity: 80%;
 }
 
+
+
 }
 @media (max-width: 767px) {
   .heightOnMobile {
@@ -403,3 +405,28 @@ nav li:first-child {
 
 
 
+.styled-button {
+  
+  background-color: #ffffff; /* White background */
+  border: 2px solid #cccccc; /* Light gray border */
+  color: #333333; /* Dark gray text color */
+  padding: 10px 20px; /* Padding for the button */
+  font-size: 16px; /* Font size */
+  border-radius: 10px; /* Rounded corners */
+  margin-top:10px;
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial shadow */
+  font-weight: bold; 
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, font-weight 0.3s ease; /* Smooth transition for shadow and background color */
+}
+
+.styled-button:hover {
+  background-color: #cccccc; /* Grey background on hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+ 
+}
+
+.styled-button:active {
+  background-color: #cccccc; /* Maintain grey background when clicked */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial shadow when clicked */
+}
