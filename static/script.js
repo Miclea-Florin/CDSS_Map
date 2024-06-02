@@ -159,7 +159,7 @@ paths.forEach(function (path) {
   console.log(iso)
   updateMapColor(iso);
 
-  changeColorByIso('map',iso,"#FF0000");
+  changeColorByIso('map',iso,"#EE4E4E");
   
 }
 

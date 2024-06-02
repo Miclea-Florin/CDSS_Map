@@ -343,9 +343,14 @@ template {
   display: none;
 }
 
+.svgMobile{
+  height:10vw;
+  width: 10vw;
+  
+  }
 html,
 body {
-  background-color: #40798C;
+  background-color: #799351;
 }
 
 * {
@@ -368,6 +373,11 @@ a {
 }
 
 @media only screen and (max-width: 859px) {
+  .svgMobile{
+    height:25vw;
+    width: 25vw;
+    
+    }
   main {
     flex-direction: column;
   }
@@ -377,6 +387,7 @@ a {
   }
 
   section.content {
+    background-color: #799351;
     flex: 1 1 50%;
     order: 1;
   }
@@ -391,7 +402,7 @@ main {
 section.sidebar {
   flex: 0 0 20%;
   position: relative;
-  background-color: #F6F1D1;
+  background-color: #eee4ad;
   height: 100%;
   min-width: 400px;
   padding: 30px;
@@ -484,7 +495,7 @@ a.download {
 
 .random:hover,
 a.download:hover {
-  background-color: #2c3e50;
+  background-color: #799351;
   color: #dfe6e9;
 }
 
@@ -565,3 +576,34 @@ div#toolTip ul li {
   outline: none;
 }
 
+
+
+.form-container {
+  
+  background: #F6EEC9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+
+}
+
+.form-container select,
+.form-container input[type="file"],
+.form-container input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.form-container input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.form-container input[type="submit"]:hover {
+  background-color: #45a049;
+}

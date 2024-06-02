@@ -42,6 +42,10 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 def firstAid():
     return render_template('/FirstAid.html')
 
+@app.route('/CPR')
+def CPR():
+   return render_template('/CPR.html')
+
 @app.route('/safe_position')
 def safe_position():
     return render_template('/safe_position.html')
@@ -117,7 +121,7 @@ def add_fill_attribute(xml_tree,iso):
     namespace = {'svg': 'http://www.w3.org/2000/svg'}
     for path_element in xml_tree.findall(f'.//{{http://www.w3.org/2000/svg}}path[@iso_3166_2="{iso}"]', namespace):
     
-        path_element.set('fill', '#FF0000')
+        path_element.set('fill', '#EE4E4E')
 
     root = xml_tree.getroot()
     root.set('xmlns', 'http://www.w3.org/2000/svg')
