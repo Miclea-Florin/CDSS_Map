@@ -1,9 +1,10 @@
-from flask import Flask, request, jsonify,render_template
+from flask import Flask, request, jsonify,render_template,session,redirect,url_for,flash
 import os
 from xml.etree import ElementTree as ET
 from tempfile import mkstemp
 from shutil import move
 from os import fdopen, remove
+import re
 import http
 import image
 from werkzeug.utils import secure_filename
@@ -14,6 +15,13 @@ from flask import Flask, request, jsonify
 import openai
 from openai import OpenAI
 import llm_utils
+import pymysql
+from flask_mysqldb import MySQL
+import MySQLdb.cursors
+from flask_wtf import FlaskForm
+import hashlib
+from wtforms import StringField, PasswordField, SubmitField, EmailField
+from wtforms.validators import InputRequired, Length, ValidationError,EqualTo
 
 required_version = version.parse("1.1.1")
 current_version = version.parse(openai.__version__)
@@ -28,6 +36,7 @@ else:
 
 app = Flask(__name__)
 #CORS(app)
+app.secret_key = 'your_secret_key'
 
 client = OpenAI(
     api_key=OPENAI_API_KEY)  
@@ -35,7 +44,89 @@ assistant_id = llm_utils.create_assistant(client)
 
 
 UPLOAD_FOLDER = 'uploads'
+
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'cdss'
+mysql = MySQL(app)
+
+def password_check(form, field):
+    password = field.data
+    if not re.search(r'[A-Z]', password):
+        raise ValidationError('Password must contain at least one uppercase letter.')
+    if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+        raise ValidationError('Password must contain at least one special character.')
+
+class LoginForm(FlaskForm):
+    email= EmailField('Email', validators=[InputRequired(), Length(min=4, max=50)])
+    password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
+    submit = SubmitField('Login')
+
+class RegisterForm(FlaskForm):
+    username = StringField('Username', validators=[InputRequired(), Length(min=4, max=15)])
+    email = EmailField('Email', validators=[InputRequired(), Length(min=6, max=50)])
+    password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80), password_check])
+    retype_password = PasswordField('Retype Password', validators=[InputRequired(), EqualTo('password', message='Passwords must match.')])
+    submit = SubmitField('Register')
+
+
+
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+        hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * FROM users WHERE email = %s AND password = %s", (email, hashed_password))
+        user = cursor.fetchone()
+        cursor.close()
+        
+       
+        if user:
+            session['user_id'] = user['id']
+            session['email'] = user['email']
+            session['username'] = user['username']
+            session['isAdmin'] = user['isAdmin'] 
+            return redirect(url_for('index'))
+        else:
+            flash('Invalid username or password')
+
+    return render_template('login.html', form=form)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        email = form.email.data
+        password = form.password.data
+
+        hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * FROM users WHERE username = %s OR email = %s", (username, email))
+        user = cursor.fetchone()
+
+        if user:
+            flash('Username or email already exists')
+        else:
+            cursor.execute("INSERT INTO users (username, email, password) VALUES (%s, %s, %s)", (username, email, hashed_password))
+            mysql.connection.commit()
+            cursor.close()
+            flash('Registration successful! Please log in.')
+            return redirect(url_for('login'))
+
+    return render_template('register.html', form=form)
+
+
+
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route('/FirstAid')
@@ -139,8 +230,17 @@ def remove_namespace_prefix(element):
         element.tag = element.tag.split('}', 1)[1]
 
 
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
+
 @app.route('/')
 def index():
+    if(session.get('user_id') is None):
+        return redirect(url_for('login'))
+    print (session)
     return render_template('/index.html')
 
 @app.route('/change-color', methods=['POST'])

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f0f0f0;
+    }
+    
+    .image-background {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      overflow: hidden;
+      object-fit: cover;
+      background: url('/static/FirstAid/landing2.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+    
+    .content {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      z-index: 1;
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    form p {
+      margin: 15px 0;
+      position: relative;
+    }
+
+    input[type="text"], input[type="email"], input[type="password"] {
+      appearance: none; /* Remove browser-specific styling */
+      -webkit-appearance: none; /* Remove browser-specific styling for WebKit browsers */
+      -moz-appearance: none; /* Remove browser-specific styling for Firefox */
+      -ms-appearance: none; /* Remove browser-specific styling for IE */
+      width: 100%;
+      padding: 10px 15px;
+      margin: 10px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      font-size: 16px;
+    }
+    
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px 0;
+      margin: 20px 0;
+      border: none;
+      border-radius: 5px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    input[type="submit"]:hover {
+      background: linear-gradient(to right, #0072ff, #00c6ff);
+    }
+
+    .signup-link {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .signup-link a {
+      color: #0072ff;
+      text-decoration: none;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="image-background"></div>
+  <div class="content">
+    <h1>Register</h1>
+    <form method="POST" action="{{ url_for('register') }}">
+      {{ form.hidden_tag() }}
+      <p>
+        {{ form.username(size=32, placeholder="Username") }}<br>
+      </p>
+      <p>
+        {{ form.email(size=32, placeholder="Email") }}<br>
+      </p>
+      <p>
+        {{ form.password(size=32, placeholder="Password") }}<br>
+      </p>
+      <p>
+        {{ form.retype_password(size=32, placeholder="Retype Password") }}<br>
+      </p>
+      <p>{{ form.submit(class="btn") }}</p>
+    </form>
+    <div class="signup-link">
+      Already have an account? <a href="{{ url_for('login') }}">Login</a>
+    </div>
+    {% for message in get_flashed_messages() %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  </div>
+</body>
+</html>
