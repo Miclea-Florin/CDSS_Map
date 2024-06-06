@@ -144,6 +144,8 @@ def safe_position():
 @app.route('/upload', methods=['POST', 'GET'])
 def upload_file():
     # Check if the post request has the file part
+    
+
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
     file = request.files['file']
@@ -157,6 +159,10 @@ def upload_file():
         filename = secure_filename(file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
+        with open(file_path, 'rb') as file:
+            binary_data = file.read()
+       
+
         # You can now process the file as needed
         #return jsonify({'message': 'File uploaded successfully', 'filename': filename}), 200
     print("image uploaded successfully")
@@ -179,6 +185,13 @@ def upload_file():
     tree = ET.parse('static\\maps\\RO.svg')
     print('[DEBUG]: Disaster: {}, Region: {}'.format(dis, iso))
     add_disaster_attribute(tree, iso, dis)
+
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("INSERT INTO alerts (image, user_id, disaster, region) VALUES (%s, %s, %s, %s)", (binary_data, session['user_id'], dis, iso))
+    mysql.connection.commit()
+    cursor.close()
+
+
     tree.write('static\\maps\\updated_RO.svg')  # Save the updated SVG
     with open('static\\maps\\updated_RO.svg', 'r') as file:  # Read the updated SVG content
         svg_content = file.read()

@@ -163,3 +163,8 @@ paths.forEach(function (path) {
   
 }
 
+function toggleNotificationBar() {
+  const notificationBar = document.querySelector('.notification-bar');
+  notificationBar.classList.toggle('active');
+}
+
