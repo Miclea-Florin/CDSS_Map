@@ -133,6 +133,18 @@ def login():
 
     return render_template('login.html', form=form)
 
+@app.route('/get_user_data', methods=['GET'])
+def get_user_data():
+    if 'user_id' in session:
+        return jsonify({
+            'user_id': session['user_id'],
+            'email': session['email'],
+            'username': session['username'],
+            'isAdmin': session['isAdmin']
+        })
+    else:
+        return jsonify({'error': 'User not logged in'}), 401
+
 @app.route('/alerts/<int:alert_id>', methods=['DELETE'])
 def delete_alert(alert_id):
     try:
@@ -202,6 +214,8 @@ def safe_position():
 @app.route('/upload', methods=['POST', 'GET'])
 def upload_file():
     # Check if the post request has the file part
+    if(session.get('user_id') is None):
+        return redirect(url_for('login'))
     
 
     if 'file' not in request.files:
@@ -339,8 +353,7 @@ def logout():
 
 @app.route('/')
 def index():
-    if(session.get('user_id') is None):
-        return redirect(url_for('login'))
+    
     print (session)
     return render_template('/index.html')
 

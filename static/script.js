@@ -177,6 +177,12 @@ function toggleNotificationBar() {
 
 async function fetchAlerts() {
   try {
+      // Fetch user data (admin status) from session or another endpoint
+      const userResponse = await fetch('/get_user_data');
+      const userData = await userResponse.json();
+      const isAdmin = userData.isAdmin;
+
+      // Fetch alerts
       const response = await fetch('/alerts');
       const alerts = await response.json();
 
@@ -201,17 +207,19 @@ async function fetchAlerts() {
 
               const alertTime = document.createElement('p');
               alertTime.className = 'alert-time';
-              alertTime.textContent = 'Time to be implemented'   //`${alert.time}`; // TODO: add TIME to Database and display it here
+              alertTime.textContent = 'Time to be implemented'; //`${alert.time}`; // TODO: add TIME to Database and display it here
               alertInfo.appendChild(alertTime);
 
               alertItem.appendChild(alertInfo);
 
-              // Add delete button
-              const deleteButton = document.createElement('button');
-              deleteButton.innerHTML = '&#10060;';
-              deleteButton.className = 'delete-button';
-              deleteButton.onclick = () => deleteAlert(alert.id);
-              alertItem.appendChild(deleteButton);
+              // Conditionally add delete button if user is admin
+              if (isAdmin) {
+                  const deleteButton = document.createElement('button');
+                  deleteButton.innerHTML = '&#10060;';
+                  deleteButton.className = 'delete-button';
+                  deleteButton.onclick = () => deleteAlert(alert.id);
+                  alertItem.appendChild(deleteButton);
+              }
 
               alertList.appendChild(alertItem);
           });
@@ -224,6 +232,13 @@ async function fetchAlerts() {
       console.error('Error fetching alerts:', error);
   }
 }
+
+// Function to fetch user data
+async function getUserData() {
+  const response = await fetch('/get_user_data');
+  return await response.json();
+}
+
 
 async function deleteAlert(alertId) {
   try {
