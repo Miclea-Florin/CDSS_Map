@@ -674,14 +674,7 @@ div#toolTip ul li {
   color: #888;
 }
 
-.alert-item .delete-button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
+
 
 .toggle-button {
   position: fixed;
@@ -693,4 +686,40 @@ div#toolTip ul li {
   border-radius: 50%;
   cursor: pointer;
   z-index: 1001;
+}
+
+
+
+/* alert modified*/
+.alert-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.alert-info {
+  flex: 1;
+  padding-left: 10px;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: red;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.delete-button:hover {
+  transform: scale(1.2);
+  color: darkred;
+}
+.alert-time {
+  font-style: italic;
+  color: gray;
 }

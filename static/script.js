@@ -163,10 +163,16 @@ paths.forEach(function (path) {
   
 }
 
+/* form */
+
+
+/* form end*/
+
 function toggleNotificationBar() {
   const notificationBar = document.querySelector('.notification-bar');
   notificationBar.classList.toggle('active');
 }
+
 
 
 async function fetchAlerts() {
@@ -199,6 +205,14 @@ async function fetchAlerts() {
               alertInfo.appendChild(alertTime);
 
               alertItem.appendChild(alertInfo);
+
+              // Add delete button
+              const deleteButton = document.createElement('button');
+              deleteButton.innerHTML = '&#10060;';
+              deleteButton.className = 'delete-button';
+              deleteButton.onclick = () => deleteAlert(alert.id);
+              alertItem.appendChild(deleteButton);
+
               alertList.appendChild(alertItem);
           });
       } else {
@@ -211,6 +225,20 @@ async function fetchAlerts() {
   }
 }
 
+async function deleteAlert(alertId) {
+  try {
+      const response = await fetch(`/alerts/${alertId}`, {
+          method: 'DELETE',
+      });
+      if (response.ok) {
+          fetchAlerts(); // Refresh the alert list after deletion
+      } else {
+          console.error('Failed to delete alert');
+      }
+  } catch (error) {
+      console.error('Error deleting alert:', error);
+  }
+}
+
 // Fetch alerts when the page loads
 document.addEventListener('DOMContentLoaded', fetchAlerts);
-

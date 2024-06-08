@@ -133,17 +133,17 @@ def login():
 
     return render_template('login.html', form=form)
 
-@app.route('/delete_alert/<int:alert_id>', methods=['POST'])
+@app.route('/alerts/<int:alert_id>', methods=['DELETE'])
 def delete_alert(alert_id):
-    print("[DEBUG] + {session}")
-    if 'isAdmin' in session and session['isAdmin'] == 1:
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    try:
+        cursor = mysql.connection.cursor()
         cursor.execute("DELETE FROM alerts WHERE id = %s", (alert_id,))
         mysql.connection.commit()
         cursor.close()
-        return jsonify({'status': 'success', 'message': 'Alert deleted successfully'})
-    else:
-        return jsonify({'status': 'error', 'message': 'Unauthorized'}), 403
+        return '', 204  # No Content
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({'error': 'Failed to delete alert'}), 500
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -246,7 +246,7 @@ def upload_file():
 
 
 
-    return render_template('/index.html')
+    return redirect(url_for('index'))
 
 
 def add_disaster_attribute(xml_tree,iso,dis):
@@ -264,7 +264,19 @@ def add_disaster_attribute(xml_tree,iso,dis):
 
     xml_tree.write('static\\maps\\RO.svg', method='xml', xml_declaration=True)
 
+def remove_disaster_attribute(xml_tree,iso):
+    namespace = {'svg': 'http://www.w3.org/2000/svg'}
+    for path_element in xml_tree.findall(f'.//{{http://www.w3.org/2000/svg}}path[@iso_3166_2="{iso}"]', namespace):
+        path_element.set('disaster', "")
 
+    root = xml_tree.getroot()
+    root.set('xmlns', 'http://www.w3.org/2000/svg')
+   
+    for elem in root.iter():
+        #print(elem.attrib)
+        remove_namespace_prefix(elem)
+
+    xml_tree.write('static\\maps\\RO.svg', method='xml', xml_declaration=True)
 
 def add_fill_attribute(xml_tree,iso):
     
@@ -272,6 +284,23 @@ def add_fill_attribute(xml_tree,iso):
     for path_element in xml_tree.findall(f'.//{{http://www.w3.org/2000/svg}}path[@iso_3166_2="{iso}"]', namespace):
     
         path_element.set('fill', '#EE4E4E')
+
+    root = xml_tree.getroot()
+    root.set('xmlns', 'http://www.w3.org/2000/svg')
+   
+    for elem in root.iter():
+        #print(elem.attrib)
+        remove_namespace_prefix(elem)
+
+    xml_tree.write('static\\maps\\RO.svg', method='xml', xml_declaration=True)
+
+
+def add_fill_attribute_green(xml_tree,iso):
+        
+    namespace = {'svg': 'http://www.w3.org/2000/svg'}
+    for path_element in xml_tree.findall(f'.//{{http://www.w3.org/2000/svg}}path[@iso_3166_2="{iso}"]', namespace):
+    
+        path_element.set('fill', '#A1DD70')
 
     root = xml_tree.getroot()
     root.set('xmlns', 'http://www.w3.org/2000/svg')
