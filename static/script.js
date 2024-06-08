@@ -168,3 +168,49 @@ function toggleNotificationBar() {
   notificationBar.classList.toggle('active');
 }
 
+
+async function fetchAlerts() {
+  try {
+      const response = await fetch('/alerts');
+      const alerts = await response.json();
+
+      const alertList = document.getElementById('alert-list');
+      alertList.innerHTML = ''; // Clear existing content
+
+      if (alerts.length > 0) {
+          alerts.forEach(alert => {
+              const alertItem = document.createElement('div');
+              alertItem.className = 'alert-item';
+
+              const alertImage = document.createElement('img');
+              alertImage.src = `data:image/jpeg;base64,${alert.image}`;
+              alertItem.appendChild(alertImage);
+
+              const alertInfo = document.createElement('div');
+              alertInfo.className = 'alert-info';
+
+              const alertText = document.createElement('p');
+              alertText.textContent = `${alert.disaster} in ${alert.region}`;
+              alertInfo.appendChild(alertText);
+
+              const alertTime = document.createElement('p');
+              alertTime.className = 'alert-time';
+              alertTime.textContent = 'Time to be implemented'   //`${alert.time}`; // TODO: add TIME to Database and display it here
+              alertInfo.appendChild(alertTime);
+
+              alertItem.appendChild(alertInfo);
+              alertList.appendChild(alertItem);
+          });
+      } else {
+          const noAlert = document.createElement('p');
+          noAlert.textContent = 'Nu sunt alerte active';
+          alertList.appendChild(noAlert);
+      }
+  } catch (error) {
+      console.error('Error fetching alerts:', error);
+  }
+}
+
+// Fetch alerts when the page loads
+document.addEventListener('DOMContentLoaded', fetchAlerts);
+

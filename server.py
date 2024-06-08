@@ -22,7 +22,7 @@ from flask_wtf import FlaskForm
 import hashlib
 from wtforms import StringField, PasswordField, SubmitField, EmailField
 from wtforms.validators import InputRequired, Length, ValidationError,EqualTo
-
+import base64
 required_version = version.parse("1.1.1")
 current_version = version.parse(openai.__version__)
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
@@ -72,8 +72,41 @@ class RegisterForm(FlaskForm):
     retype_password = PasswordField('Retype Password', validators=[InputRequired(), EqualTo('password', message='Passwords must match.')])
     submit = SubmitField('Register')
 
+class Alert:
+    def __init__(self, id, image, user_id, disaster, region):
+        self.id = id
+        self.image = base64.b64encode(image).decode('utf-8')
+        self.user_id = user_id
+        self.disaster = disaster
+        self.region = region
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'image': self.image,
+            'user_id': self.user_id,
+            'disaster': self.disaster,
+            'region': self.region
+        }    
 
+  
+@app.route('/alerts', methods=['GET'])
+def get_alerts():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT * FROM alerts")
+    alerts = cursor.fetchall()
+    cursor.close()
+    alert_list = []
+    for alert in alerts:
+       alert_obj = Alert(
+            id=alert['id'],
+            user_id=alert['user_id'],
+            image=alert['image'],
+            disaster=alert['disaster'],
+            region=alert['region']
+        )
+       alert_list.append(alert_obj.to_dict())
+    return jsonify(alert_list)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -99,6 +132,18 @@ def login():
             flash('Invalid username or password')
 
     return render_template('login.html', form=form)
+
+@app.route('/delete_alert/<int:alert_id>', methods=['POST'])
+def delete_alert(alert_id):
+    print("[DEBUG] + {session}")
+    if 'isAdmin' in session and session['isAdmin'] == 1:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("DELETE FROM alerts WHERE id = %s", (alert_id,))
+        mysql.connection.commit()
+        cursor.close()
+        return jsonify({'status': 'success', 'message': 'Alert deleted successfully'})
+    else:
+        return jsonify({'status': 'error', 'message': 'Unauthorized'}), 403
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -187,6 +232,7 @@ def upload_file():
     add_disaster_attribute(tree, iso, dis)
 
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    print(session['user_id'])
     cursor.execute("INSERT INTO alerts (image, user_id, disaster, region) VALUES (%s, %s, %s, %s)", (binary_data, session['user_id'], dis, iso))
     mysql.connection.commit()
     cursor.close()
