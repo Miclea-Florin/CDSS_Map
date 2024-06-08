@@ -227,18 +227,29 @@ async function fetchAlerts() {
 
 async function deleteAlert(alertId) {
   try {
-      const response = await fetch(`/alerts/${alertId}`, {
-          method: 'DELETE',
-      });
-      if (response.ok) {
-          fetchAlerts(); // Refresh the alert list after deletion
-      } else {
-          console.error('Failed to delete alert');
-      }
+    const response = await fetch(`/alerts/${alertId}`, {
+      method: 'DELETE',
+    });
+    if (response.ok) {
+      fetchAlerts(); // Refresh the alert list after deletion
+      //location.reload();
+      var mapElement = document.getElementById('map');
+      var currentData = mapElement.getAttribute('data');
+      var updatedData = currentData.split('?')[0] + '?t=' + new Date().getTime();
+      mapElement.setAttribute('data', updatedData);
+
+      // Wait for the new map content to load before calling loadMap
+      mapElement.addEventListener('load', () => {
+        loadMap();
+      }, { once: true });
+    } else {
+      console.error('Failed to delete alert');
+    }
   } catch (error) {
-      console.error('Error deleting alert:', error);
+    console.error('Error deleting alert:', error);
   }
 }
+
 
 // Fetch alerts when the page loads
 document.addEventListener('DOMContentLoaded', fetchAlerts);

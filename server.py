@@ -137,10 +137,23 @@ def login():
 def delete_alert(alert_id):
     try:
         cursor = mysql.connection.cursor()
+    
+        iso = cursor.execute("SELECT region FROM alerts WHERE id = %s", (alert_id,))
+        iso = cursor.fetchone()
+        iso = iso[0]
+
         cursor.execute("DELETE FROM alerts WHERE id = %s", (alert_id,))
         mysql.connection.commit()
         cursor.close()
-        return '', 204  # No Content
+
+        tree = ET.parse('static\\maps\\RO.svg')        
+        add_fill_attribute_green(tree, iso)
+        tree.write('static\\maps\\updated_RO.svg')  # Save the updated SVG
+        tree = ET.parse('static\\maps\\RO.svg')  
+        remove_disaster_attribute(tree, iso)
+
+        
+        return redirect(url_for('index')),200
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({'error': 'Failed to delete alert'}), 500
