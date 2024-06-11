@@ -207,7 +207,7 @@ async function fetchAlerts() {
 
               const alertTime = document.createElement('p');
               alertTime.className = 'alert-time';
-              alertTime.textContent = 'Time to be implemented'; //`${alert.time}`; // TODO: add TIME to Database and display it here
+              alertTime.textContent = `${alert.time}`; // TODO: add TIME to Database and display it here
               alertInfo.appendChild(alertTime);
 
               alertItem.appendChild(alertInfo);

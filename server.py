@@ -52,6 +52,50 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'cdss'
 mysql = MySQL(app)
+region_dict = {
+    "RO-AB": "Alba",
+    "RO-AR": "Arad",
+    "RO-AG": "Argeș",
+    "RO-BC": "Bacău",
+    "RO-BH": "Bihor",
+    "RO-BN": "Bistrița-Năsăud",
+    "RO-BT": "Botoșani",
+    "RO-BV": "Brașov",
+    "RO-BR": "Brăila",
+    "RO-BZ": "Buzău",
+    "RO-CS": "Caraș-Severin",
+    "RO-CL": "Călărași",
+    "RO-CJ": "Cluj",
+    "RO-CT": "Constanța",
+    "RO-CV": "Covasna",
+    "RO-DB": "Dâmbovița",
+    "RO-DJ": "Dolj",
+    "RO-GL": "Galați",
+    "RO-GR": "Giurgiu",
+    "RO-GJ": "Gorj",
+    "RO-HR": "Harghita",
+    "RO-HD": "Hunedoara",
+    "RO-IL": "Ialomița",
+    "RO-IS": "Iași",
+    "RO-IF": "Ilfov",
+    "RO-MM": "Maramureș",
+    "RO-MH": "Mehedinți",
+    "RO-MS": "Mureș",
+    "RO-NT": "Neamț",
+    "RO-OT": "Olt",
+    "RO-PH": "Prahova",
+    "RO-SM": "Satu Mare",
+    "RO-SJ": "Sălaj",
+    "RO-SB": "Sibiu",
+    "RO-SV": "Suceava",
+    "RO-TR": "Teleorman",
+    "RO-TM": "Timiș",
+    "RO-TL": "Tulcea",
+    "RO-VS": "Vaslui",
+    "RO-VL": "Vâlcea",
+    "RO-VN": "Vrancea",
+    "RO-B": "Bucharest (Municipality)"
+}
 
 def password_check(form, field):
     password = field.data
@@ -73,12 +117,13 @@ class RegisterForm(FlaskForm):
     submit = SubmitField('Register')
 
 class Alert:
-    def __init__(self, id, image, user_id, disaster, region):
+    def __init__(self, id, image, user_id, disaster, region, time):
         self.id = id
         self.image = base64.b64encode(image).decode('utf-8')
         self.user_id = user_id
         self.disaster = disaster
         self.region = region
+        self.time = time
 
     def to_dict(self):
         return {
@@ -86,14 +131,15 @@ class Alert:
             'image': self.image,
             'user_id': self.user_id,
             'disaster': self.disaster,
-            'region': self.region
+            'region': self.region,
+            'time': self.time
         }    
 
   
 @app.route('/alerts', methods=['GET'])
 def get_alerts():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * FROM alerts")
+    cursor.execute("SELECT * FROM alerts ORDER BY time DESC")
     alerts = cursor.fetchall()
     cursor.close()
     alert_list = []
@@ -103,7 +149,9 @@ def get_alerts():
             user_id=alert['user_id'],
             image=alert['image'],
             disaster=alert['disaster'],
-            region=alert['region']
+            region=alert['region'],
+            time=alert['time']
+
         )
        alert_list.append(alert_obj.to_dict())
     return jsonify(alert_list)
@@ -148,24 +196,72 @@ def get_user_data():
 @app.route('/alerts/<int:alert_id>', methods=['DELETE'])
 def delete_alert(alert_id):
     try:
+        # Dictionary to map region names to their corresponding codes
+        region_dict = {
+            "Alba": "RO-AB",
+            "Arad": "RO-AR",
+            "Argeș": "RO-AG",
+            "Bacău": "RO-BC",
+            "Bihor": "RO-BH",
+            "Bistrița-Năsăud": "RO-BN",
+            "Botoșani": "RO-BT",
+            "Brașov": "RO-BV",
+            "Brăila": "RO-BR",
+            "Buzău": "RO-BZ",
+            "Caraș-Severin": "RO-CS",
+            "Călărași": "RO-CL",
+            "Cluj": "RO-CJ",
+            "Constanța": "RO-CT",
+            "Covasna": "RO-CV",
+            "Dâmbovița": "RO-DB",
+            "Dolj": "RO-DJ",
+            "Galați": "RO-GL",
+            "Giurgiu": "RO-GR",
+            "Gorj": "RO-GJ",
+            "Harghita": "RO-HR",
+            "Hunedoara": "RO-HD",
+            "Ialomița": "RO-IL",
+            "Iași": "RO-IS",
+            "Ilfov": "RO-IF",
+            "Maramureș": "RO-MM",
+            "Mehedinți": "RO-MH",
+            "Mureș": "RO-MS",
+            "Neamț": "RO-NT",
+            "Olt": "RO-OT",
+            "Prahova": "RO-PH",
+            "Satu Mare": "RO-SM",
+            "Sălaj": "RO-SJ",
+            "Sibiu": "RO-SB",
+            "Suceava": "RO-SV",
+            "Teleorman": "RO-TR",
+            "Timiș": "RO-TM",
+            "Tulcea": "RO-TL",
+            "Vaslui": "RO-VS",
+            "Vâlcea": "RO-VL",
+            "Vrancea": "RO-VN",
+            "Bucharest (Municipality)": "RO-B"
+        }
+
         cursor = mysql.connection.cursor()
     
-        iso = cursor.execute("SELECT region FROM alerts WHERE id = %s", (alert_id,))
-        iso = cursor.fetchone()
-        iso = iso[0]
+        cursor.execute("SELECT region FROM alerts WHERE id = %s", (alert_id,))
+        region_name = cursor.fetchone()
+        region_name = region_name[0]
 
+        # Convert region name to region code using the dictionary
+        iso = region_dict.get(region_name)
+        
         cursor.execute("DELETE FROM alerts WHERE id = %s", (alert_id,))
         mysql.connection.commit()
         cursor.close()
-
+        
         tree = ET.parse('static\\maps\\RO.svg')        
         add_fill_attribute_green(tree, iso)
         tree.write('static\\maps\\updated_RO.svg')  # Save the updated SVG
         tree = ET.parse('static\\maps\\RO.svg')  
         remove_disaster_attribute(tree, iso)
 
-        
-        return redirect(url_for('index')),200
+        return redirect(url_for('index')), 200
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({'error': 'Failed to delete alert'}), 500
@@ -243,7 +339,19 @@ def upload_file():
     
     
     dis = image.predict(file_path)
+    if dis == 'Wildfire':
+        dis = "Incendiu"
     
+    elif dis == 'Flood':
+         dis = "Inundatie"
+
+    elif dis == 'Earthquake':
+         dis = "Cutremur"
+
+    elif dis == "Cyclone":
+         dis = "Ciclon"
+
+
     #TO DELETE IF DOESN"T WORK
     tree = ET.parse('static\\maps\\RO.svg')
     iso = request.form['hiddenRegionChange']
@@ -260,7 +368,9 @@ def upload_file():
 
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     print(session['user_id'])
-    cursor.execute("INSERT INTO alerts (image, user_id, disaster, region) VALUES (%s, %s, %s, %s)", (binary_data, session['user_id'], dis, iso))
+    iso = region_dict[iso]
+
+    cursor.execute("INSERT INTO alerts (image, user_id, disaster, region, time) VALUES (%s, %s, %s, %s, NOW())", (binary_data, session['user_id'], dis, iso))
     mysql.connection.commit()
     cursor.close()
 

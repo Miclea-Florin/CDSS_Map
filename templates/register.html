@@ -113,15 +113,15 @@
         {{ form.email(size=32, placeholder="Email") }}<br>
       </p>
       <p>
-        {{ form.password(size=32, placeholder="Password") }}<br>
+        {{ form.password(size=32, placeholder="Parolă") }}<br>
       </p>
       <p>
-        {{ form.retype_password(size=32, placeholder="Retype Password") }}<br>
+        {{ form.retype_password(size=32, placeholder="Rescrie Parola") }}<br>
       </p>
       <p>{{ form.submit(class="btn") }}</p>
     </form>
     <div class="signup-link">
-      Already have an account? <a href="{{ url_for('login') }}">Login</a>
+      Ai deja cont? <a href="{{ url_for('login') }}">Login</a>
     </div>
     {% for message in get_flashed_messages() %}
       <p>{{ message }}</p>
