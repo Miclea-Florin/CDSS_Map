@@ -343,15 +343,14 @@ template {
   display: none;
 }
 
-.svgMobile{
-  height:10vw;
-  width: 10vw;
-  
-  }
+
 html,
 body {
-  background-color: #799351;
-}
+  background-image: url(../static/FirstAid/landing2.png);       
+  background-size: cover; /* Ensures the image covers the entire container */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the image */    
+} 
 
 * {
   box-sizing: border-box;
@@ -384,10 +383,10 @@ a {
   section.sidebar {
     flex: 0 0 50%;
     order: 2;
+    
   }
 
   section.content {
-    background-color: #799351;
     flex: 1 1 50%;
     order: 1;
   }
@@ -402,7 +401,7 @@ main {
 section.sidebar {
   flex: 0 0 20%;
   position: relative;
-  background-color: #eee4ad;
+  background-color: #799351;
   height: 100%;
   min-width: 400px;
   padding: 30px;
@@ -723,3 +722,52 @@ div#toolTip ul li {
   font-style: italic;
   color: gray;
 }
+
+
+
+.stanga, .dreapta{
+  display: flex;
+  gap: 8vw;
+  }
+
+  .mama{
+
+    opacity: 95%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 15px;
+    align-items: center;
+    }
+  
+
+    .list:after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      color:white;
+      content: "";
+      display: block;
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      background: #fff;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+      }
+      .list:hover:after { 
+      width: 100%; 
+      left: 0; 
+      }
+      .list a{
+      color:white;
+      text-decoration: none;
+      }
+      
+      .list:hover{
+        opacity: 80%;
+      }
+
+   

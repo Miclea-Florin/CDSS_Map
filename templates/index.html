@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css" />
   </head>
   <body>
-   
+
+
+    
     <div class="notification-bar">
       <div class="notification-content">
           <h2>ALERTE ACTIVE</h2>
@@ -32,6 +34,8 @@
           </div>
       </div>
   </div>
+
+  
 
     <div class="toggle-button" onclick="toggleNotificationBar()">
       <svg xmlns="http://www.w3.org/2000/svg" height="45px" viewBox="0 -960 960 960" width="45px" fill="#e8eaed"><path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/>
@@ -42,173 +46,22 @@
     <main>
       
       <section class="sidebar">
-        <h1 class="title">Crisis Decision Support System for Decision Making</h1>
+          <a href="/"><img src="../static/FirstAid/logo1.png" alt="Logo"/></a>
         
+
+          <a href="/FirstAid" style="text-align: center; text-decoration: none;font-weight: 900; color:white"><svg class="svgMobile" xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 -960 960 960" width="100px" fill="#FFFFFF"><path d="M280-240h80v-80h80v-80h-80v-80h-80v80h-80v80h80v80Zm240-140h240v-60H520v60Zm0 120h160v-60H520v60ZM160-80q-33 0-56.5-23.5T80-160v-440q0-33 23.5-56.5T160-680h200v-120q0-33 23.5-56.5T440-880h80q33 0 56.5 23.5T600-800v120h200q33 0 56.5 23.5T880-600v440q0 33-23.5 56.5T800-80H160Zm0-80h640v-440H600q0 33-23.5 56.5T520-520h-80q-33 0-56.5-23.5T360-600H160v440Zm280-440h80v-200h-80v200Zm40 220Z"/></svg><br>Manual de prim ajutor</a>
       <!-- <h2 id="country-name">Romania</h2> -->
         <p class="info">
           The Romania Crisis Situation Map is a comprehensive and dynamic representation of the country's vulnerability to various natural disasters, including earthquakes, floods, wildfires, and cyclones.
           <br><br>
           In times of crisis, the map becomes an invaluable tool for decision-makers to assess the severity of the situation, coordinate relief efforts, and prioritize evacuation routes. 
-        </p>
+        </p>        
         
         
         <!-- button onclick="speak()">Speak</button> -->
         
-        
-        <script>
-          
-          function beep() {
-    var snd = new Audio("data:audio/wav;base64,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qJrx4KOQjahZxWbcZgztj2c49nKmkId44S71j0c8eV9yDK6uPRzx5X18eDvjvQ6yKo9ZSS6l//8elePK/Lf//IInrOF/FvDoADYAGBMGb7FtErm5MXMlmPAJQVgWta7Zx2go+8xJ0UiCb8LHHdftWyLJE0QIAIsI+UbXu67dZMjmgDGCGl1H+vpF4NSDckSIkk7Vd+sxEhBQMRU8j/12UIRhzSaUdQ+rQU5kGeFxm+hb1oh6pWWmv3uvmReDl0UnvtapVaIzo1jZbf/pD6ElLqSX+rUmOQNpJFa/r+sa4e/pBlAABoAAAAA3CUgShLdGIxsY7AUABPRrgCABdDuQ5GC7DqPQCgbbJUAoRSUj+NIEig0YfyWUho1VBBBA//uQZB4ABZx5zfMakeAAAAmwAAAAF5F3P0w9GtAAACfAAAAAwLhMDmAYWMgVEG1U0FIGCBgXBXAtfMH10000EEEEEECUBYln03TTTdNBDZopopYvrTTdNa325mImNg3TTPV9q3pmY0xoO6bv3r00y+IDGid/9aaaZTGMuj9mpu9Mpio1dXrr5HERTZSmqU36A3CumzN/9Robv/Xx4v9ijkSRSNLQhAWumap82WRSBUqXStV/YcS+XVLnSS+WLDroqArFkMEsAS+eWmrUzrO0oEmE40RlMZ5+ODIkAyKAGUwZ3mVKmcamcJnMW26MRPgUw6j+LkhyHGVGYjSUUKNpuJUQoOIAyDvEyG8S5yfK6dhZc0Tx1KI/gviKL6qvvFs1+bWtaz58uUNnryq6kt5RzOCkPWlVqVX2a/EEBUdU1KrXLf40GoiiFXK///qpoiDXrOgqDR38JB0bw7SoL+ZB9o1RCkQjQ2CBYZKd/+VJxZRRZlqSkKiws0WFxUyCwsKiMy7hUVFhIaCrNQsKkTIsLivwKKigsj8XYlwt/WKi2N4d//uQRCSAAjURNIHpMZBGYiaQPSYyAAABLAAAAAAAACWAAAAApUF/Mg+0aohSIRobBAsMlO//Kk4soosy1JSFRYWaLC4qZBYWFRGZdwqKiwkNBVmoWFSJkWFxX4FFRQWR+LsS4W/rFRb/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////VEFHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU291bmRib3kuZGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAwNGh0dHA6Ly93d3cuc291bmRib3kuZGUAAAAAAAAAACU=");  
-    snd.play();
-}
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        let intervalID;
-        let breathingIntervalID;
-        let timeoutID;  // for stopping the beep after 30 seconds
-        let oscillator;
-        let gainNode;
-        let breathCount = 0;
 
-        function createBeep(duration) {
-            oscillator = audioContext.createOscillator();
-            gainNode = audioContext.createGain();
-
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
-            gainNode.gain.setValueAtTime(0.15, audioContext.currentTime); // Lower the volume
-
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + duration);
-        }
-
-        function createBreath(duration) {
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-
-            oscillator.type = 'triangle';  // A different tone type can represent the breath
-            oscillator.frequency.setValueAtTime(349, audioContext.currentTime); // Frequency F4 for distinction
-            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime); // Moderate volume
-
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + duration);
-        }
-        
-        function startBreathing() {
-            if (breathingIntervalID) clearInterval(breathingIntervalID); // Clear any previous intervals
-            if (timeoutID) clearTimeout(timeoutID); // Clear any previous timeouts
-            breathCount = 0;
-
-            breathingIntervalID = setInterval(function() {
-                if (breathCount < 10) {  // Two breaths per cycle, five cycles
-                    createBreath(1); // 1 second breath
-                    breathCount++;
-                } else {
-                    stopBreathing();
-                }
-            }, 1500); // 1 second breath and a 0.5 second pause
-        }
-
-        function stopBreathing() {
-            clearInterval(breathingIntervalID);
-        }
-
-
-        function startCPRBeep() {
-            if (intervalID) clearInterval(intervalID); // Clear any previous intervals
-            if (timeoutID) clearTimeout(timeoutID); // Clear any previous timeouts
-
-            // Start the CPR rhythm
-            intervalID = setInterval(function() {
-                createBeep(0.6); // 600 ms beep
-            }, 1000); // Repeats every second
-
-            // Set a timeout to stop the beep after 30 seconds
-            timeoutID = setTimeout(function() {
-                stopCPRBeep();
-            }, 30000); // Stops after 30 seconds
-        }
-
-        function stopCPRBeep() {
-            clearInterval(intervalID);
-            if (oscillator) {
-                oscillator.disconnect();
-            }
-        }
-
-function playBeep() {
-            // Create an AudioContext instance
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-            // Create an oscillator
-            const oscillator = audioContext.createOscillator();
-
-            // Create a GainNode
-            const gainNode = audioContext.createGain();
-
-            // Set the volume level
-            gainNode.gain.setValueAtTime(0.05, audioContext.currentTime); // 0.1 is 10% of the maximum volume
-
-            // Set the oscillator type
-            oscillator.type = 'square'; // This produces a smooth beep sound
-
-            // Frequency of the beep in hertz (e.g., 440 Hz is the musical note A)
-            oscillator.frequency.setValueAtTime(440, audioContext.currentTime); 
-
-            // Connect the oscillator to the gain node
-            oscillator.connect(gainNode);
-
-            // Connect the gain node to the audio context's output (speakers)
-            gainNode.connect(audioContext.destination);
-
-            // Start the oscillator
-            oscillator.start(audioContext.currentTime);
-
-            // Stop the oscillator after 30 seconds
-            oscillator.stop(audioContext.currentTime + 5);
-        }
-
-        function speak() {
-    const msg = new SpeechSynthesisUtterance();
-    msg.lang = 'ro-RO';
-    msg.text = "Începeți masajul cardiac și păstrați ritmul pe toată durata sunetelor.";
-    msg.lang = 'ro-RO';
-    voices = window.speechSynthesis.getVoices();
-   // console.log  (voices);
-   // msg.voice = voices[1];
-
-    // Asynchronously speak the first message
-    window.speechSynthesis.speak(msg);
-
-    // Call the startCPRBeep function when the first message ends
-    msg.onend = function() {
-        startCPRBeep();  // Function to start CPR beep
-
-        // Set a timeout for 30 seconds then speak the second message
-        setTimeout(function() {
-          //msg2.lang = 'ro-RO';
-            const msg2 = new SpeechSynthesisUtterance("Începeți respirația gură la gură.");
-            msg2.lang = 'ro-RO';
-
-            // Asynchronously speak the second message
-            window.speechSynthesis.speak(msg2);
-
-            // When the second message ends, start the breathing simulation
-            msg2.onend = function() {
-                startBreathing();
-            };
-        }, 30000); // Wait for 30 seconds before speaking the second message
-    };
-}
-
-
-        </script>
-
+       
 
 <div class="form-container">
   <select id="regionChange" onchange="document.getElementById('hiddenRegionChange').value = this.value">
@@ -223,10 +76,17 @@ function playBeep() {
 
 
       
-      <a href="/FirstAid" style="text-align: center; text-decoration: none; color:darkblue"><svg class="svgMobile" xmlns="http://www.w3.org/2000/svg" height="6vw" viewBox="0 -960 960 960" width="6vw" fill="#FFFFFF"><path d="M280-240h80v-80h80v-80h-80v-80h-80v80h-80v80h80v80Zm240-140h240v-60H520v60Zm0 120h160v-60H520v60ZM160-80q-33 0-56.5-23.5T80-160v-440q0-33 23.5-56.5T160-680h200v-120q0-33 23.5-56.5T440-880h80q33 0 56.5 23.5T600-800v120h200q33 0 56.5 23.5T880-600v440q0 33-23.5 56.5T800-80H160Zm0-80h640v-440H600q0 33-23.5 56.5T520-520h-80q-33 0-56.5-23.5T360-600H160v440Zm280-440h80v-200h-80v200Zm40 220Z"/></svg><br>Manual prim ajutor</a>
-      </section>
+      
+      
+    </section>
+
+      
       <section class="content">
+
+
+
         <div class="map-wrapper">
+          
           <div id="toolTip"></div>
           <object id="map" data="{{ url_for('static', filename='maps/RO.svg') }}" type="image/svg+xml"></object>
 

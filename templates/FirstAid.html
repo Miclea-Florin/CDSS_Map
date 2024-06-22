@@ -42,20 +42,25 @@
  </div>
  
  <nav class="hideOnDesktop">
-  <div class="Menu hideOnDesktop" > <svg onclick="showSidebar()" xmlns="http://www.w3.org/2000/svg"  height="32px" viewBox="0 -960 960 960" width="32px" fill="#00000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg> </div>
-
-  <div class="sidebar">
-    <li > <svg onclick="hideSidebar()" xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#00000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></li>
-    <li><a href="/FirstAid.html">Ridicarea Rautek</a></li>
-    <li><a href="index.html">Manevra Heimlich</a></li>
-    <li><a href="index.html">Masaj Cardiac</a></li>
-    <li><a href="/safe_position.html">Poziţia de siguranță</a></li>
-
+  <div class="Menu hideOnDesktop"> 
+    <a href="/" class="logo"><img src="../static/FirstAid/logo1.png" alt="Logo"/></a>
+    <svg class="burger-menu" onclick="showSidebar()" xmlns="http://www.w3.org/2000/svg" height="10px" viewBox="0 -960 960 960" width="10px" fill="#000000">
+      <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+    </svg>
   </div>
 
-
-
- </nav>
+  <div class="sidebar">
+    <li>
+      <svg onclick="hideSidebar()" xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#000000">
+        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+      </svg>
+    </li>
+    <li><a href="/FirstAid.html">Ridicarea Rautek</a></li>
+    <li><a href="index.html">Manevra Heimlich</a></li>
+    <li><a href="/CPR">Masaj Cardiac</a></li>
+    <li><a href="/safe_position">Poziţia de siguranță</a></li>
+  </div>
+</nav>
  
 
     <h1 class="w3-margin w3-center w3-jumbo titlu" style="font-weight: 800; color:white">Ridicarea Rautek</h1>
@@ -76,7 +81,7 @@
 
 <!-- Steps Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container w3-center row-wrapper">
-  <button onclick="startProcess()">Începe</button>
+  <button class="styled-button" onclick="startProcess()">Începe</button>
   <div class="w3-content grid-container w3">
     <div class="grid-item w3-l">
       <h1 onclick="readDivContentById('TextToSpeech1')">Pasul 1</h1>
@@ -168,17 +173,7 @@
   </div>
 </div>
 
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
-  <div class="w3-xlarge w3-padding-32">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
- </div>
-</footer>
+
 
 <script>
 // Used to toggle the menu on small screens when clicking on the menu button

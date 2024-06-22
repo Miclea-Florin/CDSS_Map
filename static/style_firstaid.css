@@ -374,6 +374,7 @@ nav li:first-child {
     width: 100%;
     font-family: "Montserrat", sans-serif;
     font-weight: 800;
+    
   }
 
 }
@@ -429,4 +430,44 @@ nav li:first-child {
 .styled-button:active {
   background-color: #cccccc; /* Maintain grey background when clicked */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial shadow when clicked */
+}
+
+
+/* Hide on desktop */
+.hideOnDesktop {
+  display: none;
+}
+
+/* Display on mobile */
+@media (max-width: 768px) {
+  .hideOnDesktop {
+    display: block;
+  }
+
+  .Menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .logo img {
+    height: 40px; /* Adjust as needed */
+  }
+
+  .burger-menu {
+    cursor: pointer;
+    height: 40px; /* Adjust as needed */
+    width: 40px; /* Adjust as needed */
+  }
+
+  .sidebar {
+    display: none;
+    /* Add your styles for sidebar */
+  }
+
+  .sidebar.show {
+    display: block;
+    /* Add your styles for showing sidebar */
+  }
 }

@@ -72,7 +72,7 @@ function loadMap() {
             <li>Population: ${details.population.value}</li>
             <li>Prescurtare: ${details.postal.value}</li>
             <li>Dezastru: ${details.disaster.value}</li>
-            <li class="details-text">Click for details</li>
+            
         </ul>`;
     }
   }
