@@ -42,27 +42,31 @@
  </div>
  
  <nav class="hideOnDesktop">
-  <div class="Menu hideOnDesktop" > <svg onclick="showSidebar()" xmlns="http://www.w3.org/2000/svg"  height="32px" viewBox="0 -960 960 960" width="32px" fill="#00000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg> </div>
-
-  <div class="sidebar">
-    <li > <svg onclick="hideSidebar()" xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#00000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></li>
-    <li><a href="/FirstAid.html">Ridicarea Rautek</a></li>
-    <li><a href="index.html">Manevra Heimlich</a></li>
-    <li><a href="index.html">Masaj Cardiac</a></li>
-    <li><a href="/safe_position.html">Poziţia de siguranță</a></li>
-
+  <div class="Menu hideOnDesktop"> 
+    <a href="/" class="logo"><img src="../static/FirstAid/logo1.png" alt="Logo"/></a>
+    <svg class="burger-menu" onclick="showSidebar()" xmlns="http://www.w3.org/2000/svg" height="10px" viewBox="0 -960 960 960" width="10px" fill="#000000">
+      <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+    </svg>
   </div>
 
-
-
- </nav>
- 
+  <div class="sidebar">
+    <li>
+      <svg onclick="hideSidebar()" xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#000000">
+        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+      </svg>
+    </li>
+    <li><a href="/FirstAid">Ridicarea Rautek</a></li>
+    <li><a href="/">Manevra Heimlich</a></li>
+    <li><a href="/CPR">Masaj Cardiac</a></li>
+    <li><a href="/safe_position">Poziţia de siguranță</a></li>
+  </div>
+</nav>
 
     <h1 class="w3-margin w3-center w3-jumbo titlu" style="font-weight: 800; color:white">Masajul Cardiac</h1>
    
   <div class="video-container">
     <video playsinline controls> 
-      <source src="../static/FirstAid/rautek.mp4" type="video/mp4">
+      <source src="../static/FirstAid/videos/CPR_Long.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>

@@ -23,6 +23,7 @@ import hashlib
 from wtforms import StringField, PasswordField, SubmitField, EmailField
 from wtforms.validators import InputRequired, Length, ValidationError,EqualTo
 import base64
+from flask_cors import CORS
 required_version = version.parse("1.1.1")
 current_version = version.parse(openai.__version__)
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
@@ -35,7 +36,7 @@ else:
 
 
 app = Flask(__name__)
-#CORS(app)
+CORS(app)
 app.secret_key = 'your_secret_key'
 
 client = OpenAI(
@@ -187,7 +188,7 @@ def get_user_data():
         return jsonify({
             'user_id': session['user_id'],
             'email': session['email'],
-            'username': session['username'],
+            #'username': session['username'],
             'isAdmin': session['isAdmin']
         })
     else:
@@ -311,6 +312,7 @@ def safe_position():
 def upload_file():
     # Check if the post request has the file part
     if(session.get('user_id') is None):
+        print(session.get('user_id'))
         return redirect(url_for('login'))
     
 
@@ -458,14 +460,15 @@ def remove_namespace_prefix(element):
 
 @app.route('/logout')
 def logout():
-    session.pop('username', None)
+    print(session)
+    session.clear()
     return redirect(url_for('login'))
 
 @app.route('/')
 def index():
     
     print (session)
-    return render_template('/index.html')
+    return render_template('index.html')
 
 @app.route('/change-color', methods=['POST'])
 def change_color_endpoint():
@@ -486,8 +489,14 @@ def change_color_endpoint():
 
 
 
+@app.route('/landing')
+def landing():
+    return render_template('landing.html')
+
 
  # chatbot
+
+
 
 @app.route('/start', methods=['GET'])
 def start_conversation():

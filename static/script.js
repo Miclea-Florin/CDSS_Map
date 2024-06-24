@@ -69,7 +69,7 @@ function loadMap() {
       toolTip.innerHTML = `
         <ul>
             <li><b>${details.gn_name.value}</b></li>
-            <li>Population: ${details.population.value}</li>
+            <li>Populație: ${details.population.value}</li>
             <li>Prescurtare: ${details.postal.value}</li>
             <li>Dezastru: ${details.disaster.value}</li>
             
