@@ -4,7 +4,7 @@ import os
 def create_assistant(client):
     assistant_file_path = 'assistant.json'
     
-    # Define the paths for the three document files
+    
     doc_files = ['cutremur.docx', 'incendiu.docx', 'inundatie.docx']
     file_ids = []
 
@@ -14,7 +14,7 @@ def create_assistant(client):
             assistant_id = assistant_data['assistant_id']
             print("Loaded existing assistant ID.")
     else:
-        # Upload each document and collect their file IDs
+
         for doc_file in doc_files:
             if os.path.exists(doc_file):
                 file_upload = client.files.create(file=open(doc_file, "rb"), purpose='assistants')
@@ -22,9 +22,9 @@ def create_assistant(client):
             else:
                 print(f"Error: {doc_file} does not exist.")
         
-        # Ensure we have all necessary file IDs
+        
         if len(file_ids) == len(doc_files):
-            # Create the assistant with all document files attached
+            
             assistant = client.beta.assistants.create(
                 instructions="""
                     The assistant, CDSS Support Assistant, has been programmed to provide information on what to do in case of an earthquake, fire or flood.

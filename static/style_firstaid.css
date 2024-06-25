@@ -1,4 +1,4 @@
-/* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
+
 html {
   box-sizing: border-box;
 }
@@ -12,7 +12,7 @@ html {
 
 
 
-/* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
+
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -120,7 +120,7 @@ img {
 
   border-radius: 10px;
   margin: 20px 0;
-  position: relative; /* Add this to ensure fullscreen works correctly */
+  position: relative; 
 }
 
 .video-container video {
@@ -178,7 +178,7 @@ h1{font-family: "Monserrat",sans-serif;}
   background-color: white;
 }
 .row-wrapper:nth-child(even) {
-  background-color: #f1f1f1; /* Light grey */
+  background-color: #f1f1f1; 
 }
 @media (min-width: 768px) {
   .imgsafe{
@@ -213,7 +213,7 @@ height: 50%;
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
   padding-top: 5vw; 
-/*  padding-right: 26vw;*/
+
   }
   .mama{
 
@@ -294,10 +294,10 @@ text-decoration: none;
   background-color: white;
 }
 .grid-item:nth-child(even) {
-  background-color: #f1f1f1; /* Light grey */
+  background-color: #f1f1f1; 
 }
 .row-wrapper:nth-child(even) {
-  background-color: transparent; /* Light grey */
+  background-color: transparent; 
 }
 
 
@@ -353,12 +353,12 @@ nav li:first-child {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 20px; /* Added padding to create space at the top */
+  padding-top: 20px; 
 }
 
 .sidebar li {
   width: 100%;
-  margin-bottom: 20px; /* Added margin to create space between list items */
+  margin-bottom: 20px; 
 }
 
 .sidebar a {
@@ -387,7 +387,7 @@ nav li:first-child {
   .sidebar li:first-child {
     padding-left: 75%;
     padding-top:0px;
-    margin-bottom: 30px; /* Increase space between the close button and the first list item */
+    margin-bottom: 30px; 
   }
 
   .sidebar li {
@@ -408,28 +408,28 @@ nav li:first-child {
 
 .styled-button {
   
-  background-color: #ffffff; /* White background */
-  border: 2px solid #cccccc; /* Light gray border */
-  color: #333333; /* Dark gray text color */
-  padding: 10px 20px; /* Padding for the button */
-  font-size: 16px; /* Font size */
-  border-radius: 10px; /* Rounded corners */
+  background-color: #ffffff; 
+  border: 2px solid #cccccc; 
+  color: #333333; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  border-radius: 10px; 
   margin-top:10px;  
-  cursor: pointer; /* Pointer cursor on hover */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial shadow */
+  cursor: pointer; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   font-weight: bold; 
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, font-weight 0.3s ease; /* Smooth transition for shadow and background color */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, font-weight 0.3s ease; 
 }
 
 .styled-button:hover {
-  background-color: #cccccc; /* Grey background on hover */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+  background-color: #cccccc; 
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
  
 }
 
 .styled-button:active {
-  background-color: #cccccc; /* Maintain grey background when clicked */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial shadow when clicked */
+  background-color: #cccccc; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 
@@ -452,22 +452,22 @@ nav li:first-child {
   }
 
   .logo img {
-    height: 40px; /* Adjust as needed */
+    height: 40px; 
   }
 
   .burger-menu {
     cursor: pointer;
-    height: 40px; /* Adjust as needed */
-    width: 40px; /* Adjust as needed */
+    height: 40px; 
+    width: 40px; 
   }
 
   .sidebar {
     display: none;
-    /* Add your styles for sidebar */
+    
   }
 
   .sidebar.show {
     display: block;
-    /* Add your styles for showing sidebar */
+
   }
 }

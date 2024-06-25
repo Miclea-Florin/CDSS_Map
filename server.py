@@ -188,7 +188,7 @@ def get_user_data():
         return jsonify({
             'user_id': session['user_id'],
             'email': session['email'],
-            #'username': session['username'],
+         
             'isAdmin': session['isAdmin']
         })
     else:
@@ -197,7 +197,7 @@ def get_user_data():
 @app.route('/alerts/<int:alert_id>', methods=['DELETE'])
 def delete_alert(alert_id):
     try:
-        # Dictionary to map region names to their corresponding codes
+
         region_dict = {
             "Alba": "RO-AB",
             "Arad": "RO-AR",
@@ -249,7 +249,7 @@ def delete_alert(alert_id):
         region_name = cursor.fetchone()
         region_name = region_name[0]
 
-        # Convert region name to region code using the dictionary
+ 
         iso = region_dict.get(region_name)
         
         cursor.execute("DELETE FROM alerts WHERE id = %s", (alert_id,))
@@ -258,7 +258,7 @@ def delete_alert(alert_id):
         
         tree = ET.parse('static\\maps\\RO.svg')        
         add_fill_attribute_green(tree, iso)
-        tree.write('static\\maps\\updated_RO.svg')  # Save the updated SVG
+        tree.write('static\\maps\\updated_RO.svg')  
         tree = ET.parse('static\\maps\\RO.svg')  
         remove_disaster_attribute(tree, iso)
 
@@ -310,7 +310,7 @@ def safe_position():
 
 @app.route('/upload', methods=['POST', 'GET'])
 def upload_file():
-    # Check if the post request has the file part
+
     if(session.get('user_id') is None):
         print(session.get('user_id'))
         return redirect(url_for('login'))
@@ -319,12 +319,11 @@ def upload_file():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
     file = request.files['file']
-    # If the user does not select a file, the browser submits an
-    # empty file without a filename.
+ 
     if file.filename == '':
         print('No selected file')
         return render_template('/index.html')
-        #return jsonify({'error': 'No selected file'}), 400
+
     if file:
         filename = secure_filename(file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -333,10 +332,9 @@ def upload_file():
             binary_data = file.read()
        
 
-        # You can now process the file as needed
-        #return jsonify({'message': 'File uploaded successfully', 'filename': filename}), 200
+
     print("image uploaded successfully")
-   # print(request.form['hiddenRegionChange'])
+
     print('Disaster in region: ' + request.form['hiddenRegionChange'])
     
     
@@ -354,15 +352,15 @@ def upload_file():
          dis = "Ciclon"
 
 
-    #TO DELETE IF DOESN"T WORK
+
     tree = ET.parse('static\\maps\\RO.svg')
     iso = request.form['hiddenRegionChange']
     add_fill_attribute(tree, iso)
-    tree.write('static\\maps\\updated_RO.svg')  # Save the updated SVG
-    with open('static\\maps\\updated_RO.svg', 'r') as file:  # Read the updated SVG content
+    tree.write('static\\maps\\updated_RO.svg')  
+    with open('static\\maps\\updated_RO.svg', 'r') as file:  
         svg_content = file.read()
 
-    #print('[DEBUG]: '+str(type(dis)) + str(dis))
+
     
     tree = ET.parse('static\\maps\\RO.svg')
     print('[DEBUG]: Disaster: {}, Region: {}'.format(dis, iso))
@@ -377,8 +375,8 @@ def upload_file():
     cursor.close()
 
 
-    tree.write('static\\maps\\updated_RO.svg')  # Save the updated SVG
-    with open('static\\maps\\updated_RO.svg', 'r') as file:  # Read the updated SVG content
+    tree.write('static\\maps\\updated_RO.svg')  # 
+    with open('static\\maps\\updated_RO.svg', 'r') as file: 
         svg_content = file.read()
 
 
@@ -398,7 +396,7 @@ def add_disaster_attribute(xml_tree,iso,dis):
     root.set('xmlns', 'http://www.w3.org/2000/svg')
    
     for elem in root.iter():
-        #print(elem.attrib)
+        
         remove_namespace_prefix(elem)
 
     xml_tree.write('static\\maps\\RO.svg', method='xml', xml_declaration=True)
@@ -412,7 +410,7 @@ def remove_disaster_attribute(xml_tree,iso):
     root.set('xmlns', 'http://www.w3.org/2000/svg')
    
     for elem in root.iter():
-        #print(elem.attrib)
+      
         remove_namespace_prefix(elem)
 
     xml_tree.write('static\\maps\\RO.svg', method='xml', xml_declaration=True)
@@ -428,7 +426,7 @@ def add_fill_attribute(xml_tree,iso):
     root.set('xmlns', 'http://www.w3.org/2000/svg')
    
     for elem in root.iter():
-        #print(elem.attrib)
+        
         remove_namespace_prefix(elem)
 
     xml_tree.write('static\\maps\\RO.svg', method='xml', xml_declaration=True)
@@ -445,7 +443,7 @@ def add_fill_attribute_green(xml_tree,iso):
     root.set('xmlns', 'http://www.w3.org/2000/svg')
    
     for elem in root.iter():
-        #print(elem.attrib)
+     
         remove_namespace_prefix(elem)
 
     xml_tree.write('static\\maps\\RO.svg', method='xml', xml_declaration=True)
@@ -474,17 +472,17 @@ def index():
 def change_color_endpoint():
     
     print("INFO: Reached change-color endpoint")
-    tree = ET.parse('static\\maps\\RO.svg')  # Adjust the path as needed
+    tree = ET.parse('static\\maps\\RO.svg') 
     data = request.get_json()
     print(data.keys())
     iso = data['iso']
     add_fill_attribute(tree, iso)
-    tree.write('static\\maps\\updated_RO.svg')  # Save the updated SVG
-    with open('static\\maps\\updated_RO.svg', 'r') as file:  # Read the updated SVG content
+    tree.write('static\\maps\\updated_RO.svg')  # 
+    with open('static\\maps\\updated_RO.svg', 'r') as file:  
         svg_content = file.read()
 
 
-    return jsonify({'svgContent': svg_content})  # Return the SVG content as JSON
+    return jsonify({'svgContent': svg_content}) 
 
 
 
@@ -500,12 +498,12 @@ def landing():
 
 @app.route('/start', methods=['GET'])
 def start_conversation():
-  print("Starting a new conversation...")  # Debugging line
+  print("Starting a new conversation...")  
   thread = client.beta.threads.create()
-  print(f"New thread created with ID: {thread.id}")  # Debugging line
+  print(f"New thread created with ID: {thread.id}") 
   return jsonify({"thread_id": thread.id})
 
-# Generate response
+
 @app.route('/chat', methods=['POST'])
 def chat():
   data = request.json
