@@ -47,25 +47,25 @@ function loadMap() {
   var map = document.getElementById("map").contentDocument.querySelector("svg");
   var toolTip = document.getElementById("toolTip");
 
-  // Add event listeners to map element
+  
   if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    // If user agent is not mobile add click listener (for wikidata links)
+
     map.addEventListener("click", handleClick, false);
   }
   map.addEventListener("mousemove", mouseEntered, false);
   map.addEventListener("mouseout", mouseGone, false);
 
-  // Show tooltip on mousemove
+  
   function mouseEntered(e) {
     var target = e.target;
     if (target.nodeName == "path") {
       target.style.opacity = 0.6;
       var details = e.target.attributes;
 
-      // Follow cursor
+      
       toolTip.style.transform = `translate(${e.offsetX}px, ${e.offsetY}px)`;
 
-      // Tooltip data
+      
       toolTip.innerHTML = `
         <ul>
             <li><b>${details.gn_name.value}</b></li>
@@ -77,7 +77,7 @@ function loadMap() {
     }
   }
 
-  // Clear tooltip on mouseout
+  
   function mouseGone(e) {
     var target = e.target;
     if (target.nodeName == "path") {
@@ -86,7 +86,7 @@ function loadMap() {
     }
   }
 
-  // Go to wikidata page onclick
+  
   function handleClick(e) {
     if (e.target.nodeName == "path") {
       var details = e.target.attributes;
@@ -95,7 +95,7 @@ function loadMap() {
   }
 }
 
-// Calls init function on window load
+
 window.onload = function () {
   var changeSelector = document.getElementById("regionChange");
   
@@ -108,7 +108,7 @@ window.onload = function () {
       const option = document.createElement('option');
       option.value = item.id;
       option.textContent = item.name;
-      select.appendChild(option);  // Append the option to the select element
+      select.appendChild(option);  
     });
   
   
@@ -124,7 +124,7 @@ function updateMapColor(iso) {
       data: JSON.stringify({ 'iso': iso }),
       success: function(response) {
           console.log('Success:', response);
-          // Update the SVG content on the page
+ 
           $('#mapContainer').html(response.svgContent);
       },
       error: function(error) {
@@ -163,10 +163,7 @@ paths.forEach(function (path) {
   
 }
 
-/* form */
 
-
-/* form end*/
 
 function toggleNotificationBar() {
   const notificationBar = document.querySelector('.notification-bar');
@@ -177,17 +174,17 @@ function toggleNotificationBar() {
 
 async function fetchAlerts() {
   try {
-      // Fetch user data (admin status) from session or another endpoint
+
       const userResponse = await fetch('/get_user_data');
       const userData = await userResponse.json();
       const isAdmin = userData.isAdmin;
 
-      // Fetch alerts
+    
       const response = await fetch('/alerts');
       const alerts = await response.json();
 
       const alertList = document.getElementById('alert-list');
-      alertList.innerHTML = ''; // Clear existing content
+      alertList.innerHTML = ''; 
 
       if (alerts.length > 0) {
           alerts.forEach(alert => {
@@ -207,12 +204,12 @@ async function fetchAlerts() {
 
               const alertTime = document.createElement('p');
               alertTime.className = 'alert-time';
-              alertTime.textContent = `${alert.time}`; // TODO: add TIME to Database and display it here
+              alertTime.textContent = `${alert.time}`;
               alertInfo.appendChild(alertTime);
 
               alertItem.appendChild(alertInfo);
 
-              // Conditionally add delete button if user is admin
+              
               if (isAdmin) {
                   const deleteButton = document.createElement('button');
                   deleteButton.innerHTML = '&#10060;';
@@ -233,7 +230,7 @@ async function fetchAlerts() {
   }
 }
 
-// Function to fetch user data
+
 async function getUserData() {
   const response = await fetch('/get_user_data');
   return await response.json();
@@ -246,14 +243,14 @@ async function deleteAlert(alertId) {
       method: 'DELETE',
     });
     if (response.ok) {
-      fetchAlerts(); // Refresh the alert list after deletion
-      //location.reload();
+      fetchAlerts(); 
+   
       var mapElement = document.getElementById('map');
       var currentData = mapElement.getAttribute('data');
       var updatedData = currentData.split('?')[0] + '?t=' + new Date().getTime();
       mapElement.setAttribute('data', updatedData);
 
-      // Wait for the new map content to load before calling loadMap
+     
       mapElement.addEventListener('load', () => {
         loadMap();
       }, { once: true });
@@ -266,5 +263,5 @@ async function deleteAlert(alertId) {
 }
 
 
-// Fetch alerts when the page loads
+
 document.addEventListener('DOMContentLoaded', fetchAlerts);
