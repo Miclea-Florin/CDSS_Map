@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Prim ajutor </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="../static/manifest.json">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../static/style_firstaid.css" type="text/css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<style>
+
+
+</style>
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+</head>
+<body>
+
+
+
+<!-- Header -->
+<header class="w3-container  w3-red" style="padding-bottom: 255px ; background-image: url('../static/FirstAid/landing2.png'); background-size: cover; background-position: center;">
+  <div class="mama">
+    <div class="stanga">
+        <div class="list hideOnMobile"><a href="/FirstAid">Ridicarea Rautek</a></div>
+        <div class="list hideOnMobile"><a href="index.html">Manevra Heimlich</a></div>
+    </div>
+    <div class="logo hideOnMobile">
+      <a href="/"><img src="../static/FirstAid/logo1.png" alt="Logo"/></a>
+    </div>
+    <div class="dreapta">
+        <div class="list hideOnMobile"><a href="/CPR">Masaj Cardiac</a></div>
+        <div class="list hideOnMobile"><a href="/safe_position">Poziţia de siguranță</a></div>
+       
+      </div>
+      
+ </div>
+ 
+ <nav class="hideOnDesktop">
+  <div class="Menu hideOnDesktop"> 
+    <a href="/" class="logo"><img src="../static/FirstAid/logo1.png" alt="Logo"/></a>
+    <svg class="burger-menu" onclick="showSidebar()" xmlns="http://www.w3.org/2000/svg" height="10px" viewBox="0 -960 960 960" width="10px" fill="#000000">
+      <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+    </svg>
+  </div>
+
+  <div class="sidebar">
+    <li>
+      <svg onclick="hideSidebar()" xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#000000">
+        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+      </svg>
+    </li>
+    <li><a href="/FirstAid">Ridicarea Rautek</a></li>
+    <li><a href="/Heimlich">Manevra Heimlich</a></li>
+    <li><a href="/CPR">Masaj Cardiac</a></li>
+    <li><a href="/safe_position">Poziţia de siguranță</a></li>
+  </div>
+</nav>
+ 
+
+    <h1 class="w3-margin w3-center w3-jumbo titlu" style="font-weight: 800; color:white">Ridicarea Rautek</h1>
+   
+  <div class="video-container">
+    <video playsinline controls> 
+      <source src="../static/FirstAid/rautek.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+
+
+
+</header>
+
+
+
+<!-- Steps Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container w3-center row-wrapper">
+  <button class="styled-button" onclick="startProcess()">Începe</button>
+  <div class="w3-content grid-container w3">
+    <div class="grid-item w3-l">
+      <h1 onclick="readDivContentById('TextToSpeech1')">Pasul 1</h1>
+      <h5 class="w3-padding-32" id="TextToSpeech1">Așază brațele victimei pe lângă corp</h5>
+      <img src="../static/FirstAid/rautek1.png" alt="Pasul 1" style="width:100%">
+      <div class="video-container hideOnDesktop">
+        <video playsinline controls muted autoplay loop class="hideOnDesktop" id="Video1"> 
+          <source src="../static/FirstAid/videos/step1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    
+    <div class="grid-item">
+      <h1>Pasul 2</h1>
+      <h5 class="w3-padding-32" id="TextToSpeech2">îngenuncheză în spatele capului victimei. Așază o mână sub cap și pe cealaltă între omoplații victimei. Ridică cu atenție capul și umerii victimei si apropie-te mai mult de aceasta.</h5>
+      <img src="../static/FirstAid/rautek2.png" alt="Pasul 2" style="width:100%">
+
+      <div class="video-container hideOnDesktop">
+        <video playsinline controls muted autoplay loop class="hideOnDesktop" id="Video2"> 
+          <source src="../static/FirstAid/videos/step2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="w3-row-padding w3-padding-64 w3-container w3-center row-wrapper">
+  <div class="w3-content grid-container w3">
+    <div class="grid-item">
+      <h1>Pasul 3</h1>
+      <h5 class="w3-padding-32" id="TextToSpeech3">Ridică spatele victimei în poziția șezând. Susține umerii victimei.</h5>
+      <img src="../static/FirstAid/rautek3.png" alt="Pasul 3" style="width:100%">
+
+      <div class="video-container hideOnDesktop">
+        <video playsinline controls muted autoplay loop class="hideOnDesktop" id="Video3"> 
+          <source src="../static/FirstAid/videos/step3.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+    </div>
+    <div class="grid-item">
+      <h1>Pasul 4</h1>
+      <h5 class="w3-padding-32" id="TextToSpeech4">Trece-ți mâinile pe sub subsoara victimei și apucă unul dintre antebrațele acesteia. Prinde cu o mână încheietura mâinii victimei și cu cealaltă antebrațul acesteia.</h5>
+      <img src="../static/FirstAid/rautek4.png " alt="Pasul 4" style="width:100%">
+
+      <div class="video-container hideOnDesktop">
+        <video playsinline controls muted autoplay loop class="hideOnDesktop" id="Video4"> 
+          <source src="../static/FirstAid/videos/step4.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="w3-row-padding w3-padding-64 w3-container w3-center row-wrapper">
+  <div class="w3-content grid-container w3">
+    <div class="grid-item">
+      <h1>Pasul 5</h1>
+      <h5 class="w3-padding-32" id="TextToSpeech5">Ridică spatele victimei în poziția șezând. Susține umerii victimei.</h5>
+      <img src="../static/FirstAid/rautek3.png" alt="Pasul 3" style="width:100%">
+
+      <div class="video-container hideOnDesktop">
+        <video playsinline controls muted autoplay loop class="hideOnDesktop" id="Video5"> 
+          <source src="../static/FirstAid/videos/step5.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+    </div>
+    <div class="grid-item">
+      <h1>Pasul 6</h1>
+      <h5 class="w3-padding-32" id="TextToSpeech6">Ridică-te în picioare cu spatele drept și trage victima în sus, astfel încât aceasta să fie sprijinită de tine. Mergi cu spatele, trăgând victima după tine. Fii atent la obstacolele care s-ar putea afla în spatele tău.</h5>
+      <img src="../static/FirstAid/rautek6.png " alt="Pasul 6" class=" heightOnMobile heightOnDesktop">
+
+      <div class="video-container hideOnDesktop">
+        <video playsinline controls muted autoplay loop class="hideOnDesktop" id="Video6"> 
+          <source src="../static/FirstAid/videos/step6.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+
+
+
+
+function showSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const Menu = document.querySelector('.Menu');
+  sidebar.style.display = 'flex'
+  Menu.style.display = 'none'
+}
+function hideSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  sidebar.style.display = 'none'
+  const Menu = document.querySelector('.Menu');
+  Menu.style.display = 'flex'
+
+}
+
+window.onresize = function() {
+  if(window.outerWidth < 800) {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.style.display = 'none'
+    const Menu = document.querySelector('.Menu');
+    Menu.style.display = 'flex'
+  }
+}
+window.onresize = function() {
+  if(window.outerWidth > 800) {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.style.display = 'none'
+    const Menu = document.querySelector('.Menu');
+    Menu.style.display = 'flex'
+  }
+}
+
+
+let currentStep = 1;
+const totalSteps = 6;
+
+function startProcess() {
+    readCurrentStep();
+}
+
+function readCurrentStep() {
+    const divId = `TextToSpeech${currentStep}`;
+    const videoId = `Video${currentStep}`;
+    const textElement = document.getElementById(divId);
+    const stepElement = document.getElementById(videoId);
+
+    if (textElement && stepElement) {
+        stepElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        
+        const text = textElement.innerText;
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        msg.lang = 'ro-RO';
+        msg.volume = 1;
+        msg.rate = 1;
+        msg.pitch = 1;
+        msg.onend = function() {
+            askToContinue();
+        };
+        window.speechSynthesis.speak(msg);
+    } else {
+        console.error("Element with id '" + divId + "' not found.");
+    }
+}
+
+function askToContinue() {
+    const msg = new SpeechSynthesisUtterance();
+    msg.text = 'Doriți să continuați? Spuneți da sau nu.';
+    msg.lang = 'ro-RO';
+    msg.volume = 1;
+    msg.rate = 1;
+    msg.pitch = 1;
+    msg.onend = function() {
+        startSpeechRecognition();
+    };
+    window.speechSynthesis.speak(msg);
+}
+
+function startSpeechRecognition() {
+    if (!('webkitSpeechRecognition' in window)) {
+        alert('Web Speech API is not supported in this browser.');
+        return;
+    }
+
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang = 'ro-RO';
+
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        console.log('Transcript: ', transcript);
+
+        if (transcript.includes('da')) {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                readCurrentStep();
+            } else {
+                const msg = new SpeechSynthesisUtterance();
+                msg.text = 'Ați terminat toți pașii.';
+                msg.lang = 'ro-RO';
+                msg.volume = 1;
+                msg.rate = 1;
+                msg.pitch = 1;
+                window.speechSynthesis.speak(msg);
+            }
+        } else if (transcript.includes('nu')) {
+            readCurrentStep();
+        } else {
+            const msg = new SpeechSynthesisUtterance();
+            msg.text = 'Răspuns nerecunoscut. Vă rog să spuneți da sau nu.';
+            msg.lang = 'ro-RO';
+            msg.volume = 1;
+            msg.rate = 1;
+            msg.pitch = 1;
+            msg.onend = function() {
+                startSpeechRecognition();
+            };
+            window.speechSynthesis.speak(msg);
+        }
+    };
+
+    recognition.onerror = function(event) {
+        console.error('Speech recognition error', event.error);
+        //alert('Speech recognition error: ' + event.error);
+        readCurrentStep();
+    };
+
+    recognition.start();
+}
+
+
+</script>
+
+</body>
+</html>

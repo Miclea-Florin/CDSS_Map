@@ -296,6 +296,10 @@ def register():
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+@app.route('/Heimlich')
+def heimlich():
+    return render_template('/Heimlich.html')
+
 @app.route('/FirstAid')
 def firstAid():
     return render_template('/FirstAid.html')

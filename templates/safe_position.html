@@ -67,7 +67,7 @@
    
   <div class="video-container">
     <video playsinline controls> 
-      <source src="../static/FirstAid/rautek.mp4" type="video/mp4">
+      <source src="../static/FirstAid/safe.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
@@ -81,12 +81,14 @@
 
 <!-- Steps Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container w3-center row-wrapper">
+  <button class="styled-button" onclick="startProcess()">Începe</button>
+<div class="w3-row-padding w3-padding-64 w3-container w3-center row-wrapper">
   <h1>Pasul 1</h1>
   <div class="w3-content grid-container w3">
     
     <div class="grid-item w3-l">
      
-      <h5 class="w3-padding-32 text-justify"> Victimele care şi-au pierdut cunoştinţa şi 
+      <h5 class="w3-padding-32 text-justify" > Victimele care şi-au pierdut cunoştinţa şi 
 care respiră normal ar trebui aşezate în 
 poziţia de siguranță. Procedează în aşa 
 fel încât capul victimei să fie înclinat pe 
@@ -101,7 +103,10 @@ victimei. </h5>
     </div>
     <div class="grid-item" style="background-color: #f1f1f1;">
  
-      <h5 class="w3-padding-32 text-justify">Îngenuncheză în spatele capului victimei. Așază o mână sub cap și pe cealaltă între omoplații victimei. Ridică cu atenție capul și umerii victimei si apropie-te mai mult de aceasta.
+      <h5 class="w3-padding-32 text-justify" id="TextToSpeech1">
+        Îngenuncheză în spatele capului victimei.
+         Așază o mână sub cap și pe cealaltă între omoplații victimei. 
+         Ridică cu atenție capul și umerii victimei si apropie-te mai mult de aceasta.
         <br>
         Pune braţul victimei, care se află 
         cel mai aproape de tine, în unghi 
@@ -113,7 +118,7 @@ victimei. </h5>
     </div>
     
   </div>
-  <img class="imgsafe" src="../static/FirstAid/safe1.png" alt="Pasul 2">
+  <img class="imgsafe" src="../static/FirstAid/safe1.png" alt="Pasul 2" id="Video1">
 </div>
 
 <div class="w3-row-padding w3-padding-64 w3-container w3-center row-wrapper">
@@ -121,20 +126,20 @@ victimei. </h5>
   <div class="w3-content grid-container w3">
     <div class="grid-item" >
       <h1 >Pasul 2</h1>
-      <h5 class="w3-padding-32 text-justify"> Adu celălalt braţ al victimei peste 
+      <h5 class="w3-padding-32 text-justify " id="TextToSpeech2"> Adu celălalt braţ al victimei peste 
         piept aşezând dosul palmei pe 
         obraz. Menține-i mâna în această 
         poziție.</h5>
-      <img src="../static/FirstAid/safe2.png" alt="Pasul 3" style="width:100%">
+      <img src="../static/FirstAid/safe2.png" alt="Pasul 3" style="width:100%" id="Video2">
     </div>
     <div class="grid-item" >
       <h1>Pasul 3</h1>
-      <h5 class="w3-padding-32 text-justify">Cu mâna liberă trage în sus 
+      <h5 class="w3-padding-32 text-justify " id="TextToSpeech3">Cu mâna liberă trage în sus 
         genunchiul aflat în partea opusă.  
         Fă în aşa fel încât să ridici 
         genunchiul, însă talpa piciorului 
         victimei să rămână lipită de pământ.</h5>
-      <img src="../static/FirstAid/safe3.png" alt="Pasul 4" style="width:100%">
+      <img src="../static/FirstAid/safe3.png" alt="Pasul 4" style="width:100%" id="Video3">
     </div>
   </div>
 </div>
@@ -144,21 +149,21 @@ victimei. </h5>
   <div class="w3-content grid-container w3">
     <div class="grid-item" >
       <h1 >Pasul 4</h1>
-      <h5 class="w3-padding-32 text-justify"> Trage genunchiul îndoit al victimei 
+      <h5 class="w3-padding-32 text-justify" id="TextToSpeech4"> Trage genunchiul îndoit al victimei 
         către tine, menţinând dosul palmei 
         sale lipit de obrazul acesteia. 
         Întoarce victima către tine, dar 
         procedează în aşa fel încât aceasta 
         să rămână în poziţia culcat. 
         </h5>
-      <img src="../static/FirstAid/safe4.png" alt="Pasul 3" style="width:100%">
+      <img src="../static/FirstAid/safe4.png" alt="Pasul 5" style="width:100%" id="Video4">
     </div>
     <div class="grid-item" >
       <h1>Pasul 5</h1>
-      <h5 class="w3-padding-32 text-justify">Așază piciorul situat deasupra  
+      <h5 class="w3-padding-32 text-justify" id="TextToSpeech5" >Așază piciorul situat deasupra  
         într-un unghi drept.
         </h5>
-      <img class="iamge-height" src="../static/FirstAid/safe5.png" alt="Pasul 4" style="width:100%">
+      <img class="iamge-height" src="../static/FirstAid/safe5.png" alt="Pasul 4" style="width:100%" id="Video5">
     </div>
   </div>
 </div>
@@ -166,7 +171,7 @@ victimei. </h5>
 <div class="w3-content grid-container w3">
   <div class="grid-item" >
     <h1 >Pasul 6</h1>
-    <h5 class="w3-padding-32 text-justify">
+    <h5 class="w3-padding-32 text-justify" id="TextToSpeech6">
       Împinge capul victimei spre spate 
       pentru a menține căile respiratorii 
       deschise.
@@ -175,11 +180,11 @@ victimei. </h5>
       fel se previne înecarea acesteia cu 
       sânge sau vomă.
       </h5>
-    <img src="../static/FirstAid/safe6.png" alt="Pasul 3" style="width:100%">
+    <img src="../static/FirstAid/safe6.png" alt="Pasul 3" style="width:100%" id="Video6">
   </div>
   <div class="grid-item" >
     <h1>Pasul 7</h1>
-    <h5 class="w3-padding-32 text-justify">
+    <h5 class="w3-padding-32 text-justify " id="TextToSpeech7">
       Dacă e nevoie, potrivește mai bine 
 mâna victimei sub obraz, astfel încât 
 capul acesteia să rămână înclinat 
@@ -194,27 +199,116 @@ spatele pe o pernă sau pe o pătură
 rulată în prealabil. Astfel bebeluşul 
 are o poziţie mai stabilă.
       </h5>
-    <img  src="../static/FirstAid/safe7.png" alt="Pasul 4" style="width:100%">
+    <img  src="../static/FirstAid/safe7.png" alt="Pasul 4" style="width:100%" id="Video7">
   </div>
 </div>
 </div>
 
 </div>
 
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
-  <div class="w3-xlarge w3-padding-32">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
- </div>
-</footer>
+
 
 <script>
-// Used to toggle the menu on small screens when clicking on the menu button
+
+
+let currentStep = 1;
+const totalSteps = 7;
+
+function startProcess() {
+    readCurrentStep();
+}
+
+function readCurrentStep() {
+    const divId = `TextToSpeech${currentStep}`;
+    const videoId = `Video${currentStep}`;
+    const textElement = document.getElementById(divId);
+    const stepElement = document.getElementById(videoId);
+
+    if (textElement && stepElement) {
+        stepElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        
+        const text = textElement.innerText;
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        msg.lang = 'ro-RO';
+        msg.volume = 1;
+        msg.rate = 1;
+        msg.pitch = 1;
+        msg.onend = function() {
+            askToContinue();
+        };
+        window.speechSynthesis.speak(msg);
+    } else {
+        console.error("Element with id '" + divId + "' not found.");
+    }
+}
+
+function askToContinue() {
+    const msg = new SpeechSynthesisUtterance();
+    msg.text = 'Doriți să continuați? Spuneți da sau nu.';
+    msg.lang = 'ro-RO';
+    msg.volume = 1;
+    msg.rate = 1;
+    msg.pitch = 1;
+    msg.onend = function() {
+        startSpeechRecognition();
+    };
+    window.speechSynthesis.speak(msg);
+}
+
+function startSpeechRecognition() {
+    if (!('webkitSpeechRecognition' in window)) {
+        alert('Web Speech API is not supported in this browser.');
+        return;
+    }
+
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang = 'ro-RO';
+
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        console.log('Transcript: ', transcript);
+
+        if (transcript.includes('da')) {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                readCurrentStep();
+            } else {
+                const msg = new SpeechSynthesisUtterance();
+                msg.text = 'Ați terminat toți pașii.';
+                msg.lang = 'ro-RO';
+                msg.volume = 1;
+                msg.rate = 1;
+                msg.pitch = 1;
+                window.speechSynthesis.speak(msg);
+            }
+        } else if (transcript.includes('nu')) {
+            readCurrentStep();
+        } else {
+            const msg = new SpeechSynthesisUtterance();
+            msg.text = 'Răspuns nerecunoscut. Vă rog să spuneți da sau nu.';
+            msg.lang = 'ro-RO';
+            msg.volume = 1;
+            msg.rate = 1;
+            msg.pitch = 1;
+            msg.onend = function() {
+                startSpeechRecognition();
+            };
+            window.speechSynthesis.speak(msg);
+        }
+    };
+
+    recognition.onerror = function(event) {
+        console.error('Speech recognition error', event.error);
+        //alert('Speech recognition error: ' + event.error);
+        readCurrentStep();
+    };
+
+    recognition.start();
+}
+
+
+
 function myFunction() {
   var x = document.getElementById("navDemo");
   if (x.className.indexOf("w3-show") == -1) {
@@ -224,7 +318,7 @@ function myFunction() {
   }
 }
 
-// Hide the navbar when scrolling down, show it when at the top
+
 
 
 
