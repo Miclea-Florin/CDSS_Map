@@ -433,12 +433,12 @@ nav li:first-child {
 }
 
 
-/* Hide on desktop */
+
 .hideOnDesktop {
   display: none;
 }
 
-/* Display on mobile */
+
 @media (max-width: 768px) {
   .hideOnDesktop {
     display: block;
