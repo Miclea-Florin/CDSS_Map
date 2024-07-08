@@ -68,7 +68,7 @@
       <option value="" disabled selected>Select Region</option>
   </select>
   <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
-      <input type="file" name="file" />
+      <input type="file" name="file" accept="image/*" />
       <input type="hidden" name="hiddenRegionChange" id="hiddenRegionChange" />
       <input type="submit" value="Upload File" onclick="testButton(document.getElementById('regionChange'))" />
   </form>
